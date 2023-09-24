@@ -157,11 +157,11 @@ Compare(c1, c2, vary=20) {
     bdiff := Abs( c1.b - c2.b )
 
     return rdiff > vary || gdiff > vary || bdiff > vary
-}
+    }
 
 ToRGB(color) {
     return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
-}
+    }
 
 getItemClipboard(){
     checkRegexSleep()
@@ -403,7 +403,24 @@ ExaltAnnulToRegex(exRegex)
         ExaltAnnulToRegex(exRegex)
         }
     }
-
+craftHarvest(re1,score,harvRE){
+    setRegex(harvRE,"harvestRegex")
+    harvestTop()
+    MouseClick Left
+    loop{
+        if GetKeyState("Esc", "P"){
+            break
+            }
+        harvestButton()
+        MouseClick Left
+        harvestCraft()
+        wiggleSleep()
+        getItemClipboard()
+        if (%re1%() = score){
+            break
+            }
+        }
+    }
 MR384(){
     score = 0
     itemArray := StrSplit(Clipboard,"--------")
@@ -599,7 +616,24 @@ Numpad1::
         }
     return
 
-
+Numpad2::
+    initFunction()
+    harvestCraft()
+    getItemClipboard()
+    if RegExMatch(Clipboard,"Item Level: [84-89]"){
+        if RegExMatch(Clipboard,"Adds 12 Passive Skills"){
+            if RegExMatch(Clipboard,"12% increased Lightning Damage"){
+                    harvRe:="reforge attack"
+                if RegExMatch(Clipboard,"Fractured"){
+                    craftHarvest("LD1284",3,harvRe)
+                    }
+                else{
+                    craftHarvest("LD1284H",2,harvRe)
+                    }
+                }
+            }
+        }
+    return
 
 Numpad3::
     initFunction()
