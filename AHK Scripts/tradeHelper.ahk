@@ -1,17 +1,5 @@
+#Include, config.ahk
 
-InvFirstX = 1296
-InvFirstY = 615
-InvLastX = 1873
-InvLastY = 822
-InvLastColor = 0x090909
-InvWidth = 53
-InvX = 5
-InvY = 12
-
-wiggleSleep(){
-	;This is the cooldown to wait the stuff on your cursor to stop moving
-	Sleep 5
-	}
 
 Clicker:
     Click
