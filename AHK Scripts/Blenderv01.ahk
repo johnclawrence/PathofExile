@@ -223,6 +223,7 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
 	;Mode 0: Alt Check Aug Regal Check 
 	;Mode 1: Alt Check Aug Check Regal Check
 	global misscur
+    global splashMove
 	Loop
 	{
 		if GetKeyState("Esc", "P")
@@ -542,5 +543,7 @@ Numpad8::
 ;altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")
 
 Numpad9::
-    MsgBox % A_ScriptDir
+    ;MsgBox % A_ScriptDir
+    MouseGetPos, X,Y
+    SendInput, %X%,%Y%,0
     return

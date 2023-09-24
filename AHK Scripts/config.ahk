@@ -24,6 +24,8 @@ InvWidth = 53
 InvX = 5
 InvY = 12
 
+splashMove=1800
+
 useCooldownSleep(){
 	;This is somewhere around your ping.
 	;If you start to see "Item Unuseable" you need to increase this.
@@ -130,3 +132,20 @@ harvestTop(){
     harvestTopY := 300
     MouseMove harvestTopX,harvestTopY,0
     }
+
+resoOne
+    resoOneX := 190
+    resoOneY := 650
+    MouseMove resoOneX,resoOneY,0
+resoTwo
+    resoTwoX := 251
+    resoTwoY := 650
+    MouseMove resoOneX,resoTwoY,0
+resoThree
+    resoThreeX := 340
+    resoThreeY := 650
+    MouseMove resoThreeX,resoThreeY,0
+resoFour
+    resoFourX := 441
+    resoFourY := 650
+    MouseMove resoFourX,resoFourY,0
