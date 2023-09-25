@@ -1,6 +1,4 @@
-
 #Include, config.ahk
-
 
 initFunction(){
     global AltX
@@ -157,6 +155,16 @@ useCurrency(functionName) {
     return
 	}
 
+useEssence(functionName){
+	%functionName%()
+	MouseClick Right
+    wiggleSleep()
+	essenceCraft()
+	MouseClick Left
+	useCooldownSleep()
+    return
+	}
+
 
 magicCheck(){
     if (RegExMatch(Clipboard,"Rarity: Normal")){
@@ -198,7 +206,7 @@ altToRegex(Mode,blueRegex1,blueRegex2)
 		if (misscur != 0){
 			break
 			}
-            moveToCraft()
+        moveToCraft()
 		;Loop Code
 		if (getItemRegex(blueRegex1,blueRegex2)){
 			if (Mode = 1){
@@ -471,6 +479,26 @@ LD1284(){
     return score
     }
 
+eleBowPrefix()
+    {    
+    score = 0
+    itemArray := StrSplit(Clipboard,"--------")
+    itemModData := itemArray[6]
+    LD:= RegExMatch(itemModData,"([4-6][0-9][0-9]|3[7-9][0-9]|36[6-9]) Lightning Damage")
+    FD:= RegExMatch(itemModData,"([3-4][0-9][0-9]|2[3-9][0-9]|22[3-9]) Fire Damage")
+    CD:= RegExMatch(itemModData,"[2-4][0-9][0-9] Cold Damage")
+    if (LD >0){
+        score:=score+1
+        }
+    if (FD >0){
+        score:=score+1
+        }
+    if (CD >0){
+        score:=score+1
+        }
+    return score
+    }
+
 Numpad1::
     initFunction()
     moveToCraft()
@@ -525,7 +553,7 @@ Numpad4::
     return
 
 Numpad6::
-    ;altToRegex(1,"m)nge|ow|san|^Lar mete|ear|igy|jewel$")
+    altToRegex(1,"m)Many|e\sBow$","")
     return
 ;"m)Many|e\sBow$"
 Numpad7::
@@ -534,13 +562,13 @@ Numpad7::
     return
 ;Powerful|Glowing|Sanguine|Dangerous|^Lar 
 
+
 Numpad8::
-    initFunction()
-    ExaltAnnulToRegex("SD1284")
-;altAugRegalToRegex(1,"m)Introspection|Powerful|Stout|Pulsing|^Small","","MR384")
-;altToRegex(1,"m)Introspection|Powerful|Stout|Pulsing|^Small","")
-;altToRegex(1,"m)Meteor|Bear|Prodigy|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar"
-;altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")
+    useEssence("dHatred")
+    getItemClipboard()
+    MsgBox % eleBowPrefix()
+    MsgBox % Clipboard
+    return
 
 Numpad9::
     ;MsgBox % A_ScriptDir

@@ -133,19 +133,69 @@ harvestTop(){
     MouseMove harvestTopX,harvestTopY,0
     }
 
-resoOne
+resoOne(){
     resoOneX := 190
     resoOneY := 650
     MouseMove resoOneX,resoOneY,0
-resoTwo
+    }
+
+resoOneS1(){
+    resoOneXS1 := 274
+    resoOneYS2 := 490
+    MouseMove resoOneXS1,resoOneYS2,0
+    }
+
+resoTwo(){
     resoTwoX := 251
     resoTwoY := 650
     MouseMove resoOneX,resoTwoY,0
-resoThree
+    }
+resoThree()
+    {
     resoThreeX := 340
     resoThreeY := 650
     MouseMove resoThreeX,resoThreeY,0
-resoFour
+    }
+resoFour()
+    {
     resoFourX := 441
     resoFourY := 650
     MouseMove resoFourX,resoFourY,0
+    }
+fosAbbr()
+    {
+    fosAbbrX := 333
+    fosAbbrY := 214
+    MouseMove fosAbbrX,fosAbbrY,0
+    }
+
+fosAssemble()
+    {  
+        fosAssembleX := 252
+        fosAssembleY := 490
+        MouseMove fosAssembleX,fosAssembleY,0
+    }
+
+fosCraft()
+    {
+    MouseMove 388,496,0
+    }
+
+dWrath()
+    {
+    MouseMove 68,672,0
+    }
+dAnger()
+    {
+    MouseMove 62,430,0
+    }
+
+dHatred()
+    {
+    MouseMove 59,262,0
+    }
+
+essenceCraft()
+    {
+    MouseMove 407,652,0
+    }
