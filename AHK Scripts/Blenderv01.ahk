@@ -270,7 +270,7 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
             ;If the item is fractured, go for 4 mod. 
             }
         SplashTextOn, 400, 600, LastCluster, %Clipboard%`n Score: %result%
-        WinMove, LastCluster,, 4800, 0
+        WinMove, LastCluster,, %splashMove%, 0
         useCurrency("Scour")
 		}
     SplashTextOff
@@ -290,6 +290,7 @@ ExaltAnnulToRegex(exRegex)
         ExaltAnnulToRegex(exRegex)
         }
     }
+
 craftHarvest(re1,score,harvRE){
     setRegex(harvRE,"harvestRegex")
     harvestTop()
@@ -304,6 +305,20 @@ craftHarvest(re1,score,harvRE){
         wiggleSleep()
         getItemClipboard()
         if (%re1%() = score){
+            break
+            }
+        }
+    }
+
+craftEssence(re1,score,essence){
+    global misscur
+    loop{
+        if GetKeyState("Esc", "P"){
+            break
+            }
+        useEssence(essence)
+        getItemClipboard()
+        if (%re1%() > (score-1)){
             break
             }
         }
@@ -400,7 +415,6 @@ MD1284(){
 BD1284(){
     itemArray := StrSplit(Clipboard,"--------")
     itemModData := itemArray[5]
-    MES := RegExMatch(itemModData,"([6-9]|1[0-2]) to Maximum Energy Shield")
     ML := RegExMatch(itemModData,"([5-9]|10) to Maximum Life")
     EffT1 := RegExMatch(itemModData,"35% increased Effect")
     AERes := RegExMatch(itemModData,"[3-4]% to all Elemental Resistances")
@@ -421,7 +435,7 @@ BD1284(){
     if (AtkSpedT1 > 0){
         score:=score+1
         }
-    if  (MES + ML + Dam > 0){
+    if  (ML + Dam > 0){
         score:=score+1
         }
     if  (AERes+ChaosRes+StrT1+IntT1+DexT1+AA > 0){
@@ -512,7 +526,7 @@ Numpad1::
                 altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")   
                 }
             if RegExMatch(Clipboard,"12% increased Damage with Bows"){
-                altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|Dangerous|^Lar","m)Meteor|Bear|Prodigy|Eviction|Kaleidoscope|Fox|Mastery|Jewel$","BD1284")
+                altAugRegalToRegex(1,"m)Powerful|Sanguine|Dangerous|^Lar","m)Meteor|Bear|Prodigy|Eviction|Kaleidoscope|Fox|Mastery|Jewel$","BD1284")
                 }
             }
         if RegExMatch(Clipboard,"Adds 3 Passive Skills"){
@@ -564,10 +578,7 @@ Numpad7::
 
 
 Numpad8::
-    useEssence("dHatred")
-    getItemClipboard()
-    MsgBox % eleBowPrefix()
-    MsgBox % Clipboard
+    craftEssence("eleBowPrefix",2,"dHatred")
     return
 
 Numpad9::
