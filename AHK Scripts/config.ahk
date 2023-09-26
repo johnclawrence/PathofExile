@@ -35,6 +35,12 @@ checkRegexSleep(){
 	;This number + useCooldownSleep needs to be about double your ping.
 	Sleep 75
 	}
+
+checkOCRSleep(){
+    ;This number + useCooldownSleep needs to be about double your ping.
+    Sleep 75
+    }
+
 wiggleSleep(){
 	;This is the cooldown to wait the stuff on your cursor to stop moving
 	Sleep 5

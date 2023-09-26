@@ -1,4 +1,5 @@
 #Include, config.ahk
+#Include, AffixRegex.ahk
 
 initFunction(){
     global AltX
@@ -19,6 +20,23 @@ initFunction(){
     Send {Alt Up}
     Send {Shift Up}
     }
+
+regexSuccess()
+	{
+    checkOCRSleep()
+	
+	PixelSearch, Px, Py, 361, 524, 388, 556, 0xe7b477, 0, Fast RGB
+		if ErrorLevel
+			{
+				return (0)
+			}
+		else
+			{
+				return (1)
+			}
+	}
+
+
 setRegex(regexVal,regexType){
 	;RegexBar() RegexBar for normal harvestRegex for harvest
     %regexType%()
@@ -191,14 +209,17 @@ getItemRegex(re1,re2){
     return 0
     }
 
-altToRegex(Mode,blueRegex1,blueRegex2) 
+altToRegex(Mode,blueRegex1,blueRegex2,version) 
 	{
 	;Mode 0 is Alt Check
 	;Mode 1 is Alt Check Aug Check
+    ;Version 0 is copy and AHK RE
+    ;Version 1 is OCR Regex
 	global misscur
     moveToCraft()
     getItemClipboard()
     magicCheck()
+    loopCount:=0
 	Loop{
 		if GetKeyState("Esc", "P"){
 			break
@@ -208,21 +229,45 @@ altToRegex(Mode,blueRegex1,blueRegex2)
 			}
         moveToCraft()
 		;Loop Code
-		if (getItemRegex(blueRegex1,blueRegex2)){
-			if (Mode = 1){
-				useCurrency("Augmentation")
-				if (getItemRegex(blueRegex1,blueRegex2)){
-					break
-					}
-				}
-			if (Mode = 0){
-				break
-				}
-			}
-		else{
-            useCurrency("Alteration")
-            magicCheck()
-			}
+        if (version = 0){
+            if (getItemRegex(blueRegex1,blueRegex2)){
+                if (Mode = 1){
+                    useCurrency("Augmentation")
+                    if (getItemRegex(blueRegex1,blueRegex2)){
+                        break
+                        }
+                    }
+                if (Mode = 0){
+                    break
+                    }
+                }
+            else{
+                useCurrency("Alteration")
+                magicCheck()
+                }
+            }
+            if (version = 1){
+                if (regexSuccess()){
+                    if (Mode = 1){
+                        useCurrency("Augmentation")
+                        loopCount := 0
+                        if (regexSuccess()){
+                            break
+                            }
+                        }
+                    if (Mode = 0){
+                        break
+                        }
+                    }
+                else{
+                    useCurrency("Alteration")
+                    if (loopCount := 20){
+                        moveToCraft()
+                        getItemClipboard()
+                        magicCheck()
+                        }
+                    }
+                }
 		}
 	}
 
@@ -245,11 +290,11 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
 			}
 		;Loop Code
 		if (Mode=0){
-			altToRegex(0,blueRegex1,blueRegex2)
+			altToRegex(0,blueRegex1,blueRegex2,0)
 			useCurrency("Augmentation")
 			}
 		if (Mode=1){
-			altToRegex(1,blueRegex1,blueRegex2)
+			altToRegex(1,blueRegex1,blueRegex2,0)
 			}
 		useCurrency("Regal")
 		getItemClipboard()
@@ -323,195 +368,7 @@ craftEssence(re1,score,essence){
             }
         }
     }
-MR384(){
-    score = 0
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    MES := RegExMatch(itemModData,"(1[7-9]|20) to Maximum Energy Shield")
-    ML := RegExMatch(itemModData,"1[3-6] to Maximum Life")
-    Intro := RegExMatch(itemModData,"Introspection")
-    Eff := RegExMatch(itemModData,"Effect")
-    EffT1 := RegExMatch(itemModData,"35% increased Effect")
-    if (Eff>0){
-        if (Intro>0){
-            score = 3
-            }
-        if (MES + ML > 0){
-            if (EffT1 > 0){
-                score = 3
-                }
-            }
-        }
-    return score
-    }
 
-SD1284(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    MES := RegExMatch(itemModData,"([6-9]|1[0-2]) to Maximum Energy Shield")
-    ML := RegExMatch(itemModData,"([5-9]|10) to Maximum Life")
-    EffT1 := RegExMatch(itemModData,"35% increased Effect")
-    AA := RegExMatch(itemModData,"[3-4] to All Attributes")
-    StrT1 := RegExMatch(itemModData,"[6-8] to Strength")
-    IntT1 := RegExMatch(itemModData,"[6-8] to Intelligence")
-    Dam := RegExMatch(itemModData,"[3-4]% increased Damage")
-    ;I must have T1 effect or Attributes in my 3 mods.
-    score=0
-    output = 0
-    if (EffT1 >0){
-        score:=score+1
-        }
-    if (AA > 0){
-        score:=score+1
-        }
-    if  (MES+ML+Dam > 0){
-        score:=score+1
-        }
-    if  (StrT1+IntT1 > 0){
-        score:=score+1
-        }
-    if (StrT1 > 0) {
-        if (MES > 0) {
-            score:=score-1
-            }
-        }
-    if (IntT1 > 0) {
-        if (ML > 0) {
-            score:=score-1
-            }
-        }
-    return score
-    }
-
-MD1284(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    MES := RegExMatch(itemModData,"[6-9]|1[0-2]) to Maximum Energy Shield")
-    ML := RegExMatch(itemModData,"([5-9]|10) to Maximum Life")
-    EffT1 := RegExMatch(itemModData,"35% increased Effect")
-    AERes := RegExMatch(itemModData,"[3-4]% to all Elemental Resistances")
-    ChaosRes := RegExMatch(itemModData,"[4-5]% to Chaos Resistance")
-    AtkSpedT1 :=  RegExMatch(itemModData,"Minions have 3% increased Attack and Cast Speed")
-    vBite := RegExMatch(itemModData,"Vicious")
-
-    ;I must have T1 effect or Attributes in my 3 mods.
-    score=0
-    output = 0
-    if (EffT1 >0){
-        score:=score+1
-        }
-    if (AtkSpedT1 > 0){
-        score:=score+1
-        }
-    if  (MES+ML > 0){
-        score:=score+1
-        }
-    if  (AERes+ChaosRes+vBite > 0){
-        score:=score+1
-        }
-    return score
-    }
-    
-BD1284(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    ML := RegExMatch(itemModData,"([5-9]|10) to Maximum Life")
-    EffT1 := RegExMatch(itemModData,"35% increased Effect")
-    AERes := RegExMatch(itemModData,"[3-4]% to all Elemental Resistances")
-    ChaosRes := RegExMatch(itemModData,"[4-5]% to Chaos Resistance")
-    AtkSpedT1 :=  RegExMatch(itemModData,"3% increased Attack Speed")
-    Dam := RegExMatch(itemModData,"[3-4]% increased Damage")
-    StrT1 := RegExMatch(itemModData,"[6-8] to Strength")
-    IntT1 := RegExMatch(itemModData,"[6-8] to Intelligence")
-    DexT1 := RegExMatch(itemModData,"[6-8] to Dexterity")
-    AA := RegExMatch(itemModData,"[3-4] to All Attributes")
-    
-
-    ;I must have T1 effect or Attributes in my 3 mods.
-    score=0
-    if (EffT1 >0){
-        score:=score+1
-        }
-    if (AtkSpedT1 > 0){
-        score:=score+1
-        }
-    if  (ML + Dam > 0){
-        score:=score+1
-        }
-    if  (AERes+ChaosRes+StrT1+IntT1+DexT1+AA > 0){
-        score:=score+1
-        }
-    return score
-    }
-        
-LD1284H(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    AtkSpedT1 :=  RegExMatch(itemModData,"3% increased Attack and Cast Speed with Lightning Skills")
-    EffT1 := RegExMatch(itemModData,"35% increased Effect")
-    score=0
-    output = 0
-    if (EffT1 >0){
-        score:=score+1
-        }
-    if (AtkSpedT1 > 0){
-        score:=score+1
-        }
-    return score
-    }
-        
-LD1284(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    AtkSpedT1 :=  RegExMatch(itemModData,"3% increased Attack and Cast Speed with Lightning Skills")
-    EffT1 := RegExMatch(itemModData,"35% increased Effect")
-
-    MES := RegExMatch(itemModData,"([9]|1[0-2]) to Maximum Energy Shield")
-    ML := RegExMatch(itemModData,"([8-9]|10) to Maximum Life")
-    Dam := RegExMatch(itemModData,"[4]% increased Damage")
-
-    AERes := RegExMatch(itemModData,"[3]% to all Elemental Resistances")
-    ChaosRes := RegExMatch(itemModData,"[5]% to Chaos Resistance")
-    StrT1 := RegExMatch(itemModData,"[6-8] to Strength")
-    IntT1 := RegExMatch(itemModData,"[6-8] to Intelligence")
-    AA := RegExMatch(itemModData,"[4] to All Attributes")
-    
-    score=0
-    output = 0
-    if (EffT1 >0){
-        score:=score+1
-        }
-    if (AtkSpedT1 > 0){
-        score:=score+1
-        }
-    if (MES+ML+Dam >0){
-        score:=score+1
-        }
-    if (AERes+ChaosRes+StrT1+IntT1+AA >0){
-        score:=score+1
-        }
-    return score
-    }
-
-eleBowPrefix()
-    {    
-    score = 0
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[6]
-    LD:= RegExMatch(itemModData,"([4-6][0-9][0-9]|3[7-9][0-9]|36[6-9]) Lightning Damage")
-    FD:= RegExMatch(itemModData,"([3-4][0-9][0-9]|2[3-9][0-9]|22[3-9]) Fire Damage")
-    CD:= RegExMatch(itemModData,"[2-4][0-9][0-9] Cold Damage")
-    if (LD >0){
-        score:=score+1
-        }
-    if (FD >0){
-        score:=score+1
-        }
-    if (CD >0){
-        score:=score+1
-        }
-    return score
-    }
 
 Numpad1::
     initFunction()
@@ -565,20 +422,20 @@ Numpad4::
     initFunction()
     ;altAugRegalToRegex(1,"m)Introspection|Powerful|Stout|Pulsing|^Small","MR384")
     return
-
 Numpad6::
-    altToRegex(1,"m)Many|e\sBow$","")
+    altToRegex(1,"m)Many|e\sBow$","",0)
     return
 ;"m)Many|e\sBow$"
+
 Numpad7::
-    MsgBox % getItemRegex("m)Meteor|Bear|Prodigy|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar")
+    MsgBox % eleBowPrefix()
     MsgBox % Clipboard
     return
 ;Powerful|Glowing|Sanguine|Dangerous|^Lar 
 
 
 Numpad8::
-    craftEssence("eleBowPrefix",2,"dHatred")
+    craftEssence("eleBowPrefix",2,"dAnger")
     return
 
 Numpad9::
