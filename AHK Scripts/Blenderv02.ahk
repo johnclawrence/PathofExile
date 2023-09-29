@@ -1,6 +1,6 @@
 #Include, config.ahk
 #Include, AffixRegex.ahk
-
+SetBatchLines, -1
 
 initFunction(){
     global AltX
@@ -25,40 +25,14 @@ initFunction(){
 getItemClipboard(){
     checkRegexSleep()
     Clipboard=
-    Send, ^c
+    Send, ^!c
     ClipWait , .1
     if ErrorLevel
         {
-        Send, ^c
+        Send, ^!c
         ClipWait , .1
         }
     }
-
-
-regexSuccess()
-	{
-    checkOCRSleep()
-	
-	PixelSearch, Px, Py, 361, 524, 388, 556, 0xe7b477, 0, Fast RGB
-		if ErrorLevel
-			{
-				return (0)
-			}
-		else
-			{
-				return (1)
-			}
-	}
-
-
-setRegex(regexVal,regexType){
-	;RegexBar() RegexBar for normal harvestRegex for harvest
-    %regexType%()
-	MouseClick Left
-	SendInput, ^a
-	SendInput, %regexVal%
-	}
-
 Compare(c1, c2,vary) {
     rdiff := Abs( c1.r - c2.r )
     gdiff := Abs( c1.g - c2.g )
@@ -70,126 +44,98 @@ Compare(c1, c2,vary) {
 ToRGB(color) {
     return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
     }
-
-
-
 findCurrency(currency){
-	;For Each slot
-	Global CurrFirstX
-	Global CurrFirstY
-	Global currWidth
-	
-	curX := CurrFirstX
-	curY := CurrFirstY
-	countX=0
-	countY=0
-	Loop {
-		if GetKeyState("Esc", "P")
-			{
-			break
-			}
-		if (countX = 7)
-			break
-		if (countY = 3)
-			break
-		MouseMove curX,curY,0
-		;if there is something there...
-		PixelGetColor Color,%curX%,%curY%,
-		biColor := ToRGB(0x020202)
-		miColor := ToRGB(Color)
-		dColor := Compare(biColor,miColor,20)
-		if (dColor){
-			;What is it that's there?
-			getItemClipboard()
-			;Is it what I'm looking for?
-			if (RegExMatch(Clipboard, currency)){
-				if (currency = "Alteration"){
-					;Set the glglobal if it is
-					global AltX
-					global AltY
-					AltX := curX
-					AltY := curY
-					break
-					}
-				if (currency = "Augmentation"){
-					;Set the glglobal if it is
-					global AugX
-					global AugY
-					AugX := curX
-					AugY := curY
-					break
-					}
-				else {
-					;if it's not alts or augs, you don't have more than 5k of it and are thus out.
-					break
-					}
-                }
-			}
-        wiggleSleep()
-		countY := countY + 1
-		curY := curY + currWidth
-		if (countY = 2)
-			{
-			countX := countX + 1
-			countY := 0
-			curY := CurrFirstY
-			curX := curX + currWidth
-			}
-		}
-		
-	}
-
-
-useCurrency(functionName) {
-	global misscur
-	curColor := %functionName%()
-    curColor := ToRGB(curColor)
-	fcLoop := 0
-	Loop{
-		fcLoop := fcLoop + 1
-		if GetKeyState("Esc", "P")
-			{
-			break
-			}
-		%functionName%()
-		MouseClick Right
-		wiggleSleep()
-		MouseGetPos, X,Y
-		PixelGetColor Color,%X%,%Y%,RGB
-        Color := ToRGB(Color)
-        if (!Compare(Color,curColor,1))
-			{
-			break
-			}
-        if (functionName = "Annul"){
+    ;For Each slot
+    Global CurrFirstX
+    Global CurrFirstY
+    Global currWidth
+    curX := CurrFirstX
+    curY := CurrFirstY
+    countX=0
+    countY=0
+    Loop {
+        if GetKeyState("Esc", "P")
+            {
             break
             }
-		if (fcLoop = 25){
-			findCurrency(functionName)
-			}
-		if (fcLoop > 30){
-			misscur := functionName
-			break
-			}
-		}
-	moveToCraft()
-	MouseClick Left
-	useCooldownSleep()
-    moveToCraft()
+        if (countX = 7)
+            break
+        if (countY = 3)
+            break
+        MouseMove curX,curY,0
+        ;if there is something there...
+        PixelGetColor Color,%curX%,%curY%,
+        biColor := ToRGB(0x020202)
+        miColor := ToRGB(Color)
+        dColor := Compare(biColor,miColor,5)
+        if (dColor){
+            ;What is it that's there?
+            getItemClipboard()
+            ;Is it what I'm looking for?
+            if (RegExMatch(Clipboard, currency)){
+                if (currency = "Alteration"){
+                    ;Set the glglobal if it is
+                    global AltX
+                    global AltY
+                    AltX := curX
+                    AltY := curY
+                    break
+                    }
+                if (currency = "Augmentation"){
+                    ;Set the glglobal if it is
+                    global AugX
+                    global AugY
+                    AugX := curX
+                    AugY := curY
+                    break
+                    }
+                else {
+                    ;if it's not alts or augs, you don't have more than 5k of it and are thus out.
+                    break
+                    }
+                }
+            }
+        wiggleSleep()
+        countY := countY + 1
+        curY := curY + currWidth
+        if (countY = 2)
+            {
+            countX := countX + 1
+            countY := 0
+            curY := CurrFirstY
+            curX := curX + currWidth
+            }
+        }
+    }
+
+useCurrency(functionName) {
+    global misscur
+    curColor := %functionName%()
+    ;curColor := ToRGB(curColor)
+    fcLoop := 0
+    
+    Loop{
+        fcLoop := fcLoop + 1
+        if GetKeyState("Esc", "P")
+            {
+            break
+            }
+        %functionName%()
+        MouseClick Right
+        sleep 25
+        MouseGetPos, X,Y
+        PixelGetColor Color,%X%,%Y%,RGB
+        ;Color := ToRGB()
+        if ((Color=curColor))
+            {
+            moveToCraft()
+            MouseClick Left
+            break
+            }
+        }
+    useCooldownSleep()
     return
-	}
-
-useEssence(functionName){
-	%functionName%()
-	MouseClick Right
-    wiggleSleep()
-	essenceCraft()
-	MouseClick Left
-	useCooldownSleep()
-    return
-	}
-
-
+    }
 magicCheck(){
     if (RegExMatch(Clipboard,"Rarity: Normal")){
         useCurrency("Trans")
@@ -214,6 +160,20 @@ getItemRegex(re1,re2){
         }
     return 0
     }
+regexSuccess()
+	{
+    checkOCRSleep()
+	PixelSearch, Px, Py, 361, 524, 388, 556, 0xe7b477, 0, Fast RGB
+		if ErrorLevel
+			{
+				return (0)
+			}
+		else
+			{
+				return (1)
+			}
+	}
+
 
 altToRegex(Mode,blueRegex1,blueRegex2,version) 
 	{
@@ -273,12 +233,26 @@ altToRegex(Mode,blueRegex1,blueRegex2,version)
                         moveToCraft()
                         getItemClipboard()
                         magicCheck()
-                        }
                     }
                 }
+            }
 		}
 	}
 
+ExaltAnnulToRegex(exRegex)
+    {
+    useCurrency("Exalt")
+    getItemClipboard()
+    result := %exRegex%()
+    if (result < 4){
+        useCurrency("Annul")
+        }
+    getItemClipboard()
+    result := %exRegex%()
+    if (result = 3){
+        ExaltAnnulToRegex(exRegex)
+        }
+    }
 altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex) 
 	{
 	;Mode 0: Alt Check Aug Regal Check 
@@ -329,53 +303,17 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
     SplashTextOff
 	}
 
-ExaltAnnulToRegex(exRegex)
-    {
-    useCurrency("Exalt")
-    getItemClipboard()
-    result := %exRegex%()
-    if (result < 4){
-        useCurrency("Annul")
-        }
-    getItemClipboard()
-    result := %exRegex%()
-    if (result = 3){
-        ExaltAnnulToRegex(exRegex)
-        }
-    }
 
-craftHarvest(re1,score,harvRE){
-    setRegex(harvRE,"harvestRegex")
-    harvestTop()
-    MouseClick Left
-    loop{
-        if GetKeyState("Esc", "P"){
-            break
-            }
-        harvestButton()
-        MouseClick Left
-        harvestCraft()
-        wiggleSleep()
-        getItemClipboard()
-        if (%re1%() = score){
-            break
-            }
-        }
-    }
+Numpad6::
+    altToRegex(1,"m)Many|e\sBow$","",0)
+    return
 
-craftEssence(re1,score,essence){
-    global misscur
-    loop{
-        if GetKeyState("Esc", "P"){
-            break
-            }
-        useEssence(essence)
-        getItemClipboard()
-        if (%re1%() > (score-1)){
-            break
-            }
-        }
-    }
+Numpad7::
+    initFunction()
+    getItemClipboard()
+    MsgBox % MR384()
+    return
+
 
 Numpad1::
     initFunction()
@@ -399,59 +337,4 @@ Numpad1::
                 }
             }
         }
-    return
-
-Numpad2::
-    initFunction()
-    harvestCraft()
-    getItemClipboard()
-    if RegExMatch(Clipboard,"Item Level: [84-89]"){
-        if RegExMatch(Clipboard,"Adds 12 Passive Skills"){
-            if RegExMatch(Clipboard,"12% increased Lightning Damage"){
-                    harvRe:="reforge attack"
-                if RegExMatch(Clipboard,"Fractured"){
-                    craftHarvest("LD1284",3,harvRe)
-                    }
-                else{
-                    craftHarvest("LD1284H",2,harvRe)
-                    }
-                }
-            }
-        }
-    return
-
-Numpad3::
-    initFunction()
-    ;altToRegex(1,"m)Introspection|Powerful|Stout|Pulsing|^Small")
-    return
-
-Numpad4::
-    initFunction()
-    ;altAugRegalToRegex(1,"m)Introspection|Powerful|Stout|Pulsing|^Small","MR384")
-    return
-Numpad6::
-    altToRegex(1,"m)Many|e\sBow$","",0)
-    return
-;"m)Many|e\sBow$"
-
-Numpad7::
-    MsgBox % eleBowPrefix()
-    MsgBox % Clipboard
-    ;findCurrency("spam")
-    ;getItemClipboard()
-    ;if (!RegExMatch(Clipboard,"Prefix") || !RegExMatch(Clipboard,"Suffix")){
-        ;useCurrency("Augmentation")
-    ;    }
-    return
-;Powerful|Glowing|Sanguine|Dangerous|^Lar 
-
-
-Numpad8::
-    craftEssence("eleBowPrefix",2,"dWrath")
-    return
-
-Numpad9::
-    ;MsgBox % A_ScriptDir
-    MouseGetPos, X,Y
-    SendInput, %X%,%Y%,0
     return

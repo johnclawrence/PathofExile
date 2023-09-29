@@ -1,3 +1,4 @@
+SetBatchLines, -1
 clusterEffect(itemModData)
     {
     if RegExMatch(itemModData,"% increased Effect"){
@@ -196,16 +197,18 @@ clusterStrength(itemModData)
 
 MR384(){
     score = 0
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    Introspection := RegExMatch(itemModData,"Introspection")
-    if (clusterEffect(itemModData)>0){
+    Introspection := RegExMatch(Clipboard,"Introspection")
+    if (Introspection>0){
+        score := 1
+        }
+    if (clusterEffect(Clipboard)>0){
+        score := 1
         if (Introspection>0){
-            score = 3
+            score := 3
             }
-        if (clusterEnergyShield(itemModData) + clusterLife(itemModData) > 4){
-            if (clusterEffect(itemModData) > 1){
-                score = 3
+        if (clusterEnergyShield(Clipboard) + clusterLife(Clipboard) > 4){
+            if (clusterEffect(Clipboard) > 1){
+                score := 3
                 }
             }
         }
@@ -213,28 +216,26 @@ MR384(){
     }
 
 SD1284(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
     score=0
-    if (clusterEffect(itemModData) > 1){
+    if (clusterEffect(Clipboard) > 1){
         score:=score+1
         }
-    if (clusterAllAttribute(itemModData) > 1){
+    if (clusterAllAttribute(Clipboard) > 1){
         score:=score+1
         }
-    if  (clusterEnergyShield(itemModData)+clusterLife(itemModData)+clusterDamage(itemModData) > 1){
+    if  (clusterEnergyShield(Clipboard)+clusterLife(Clipboard)+clusterDamage(Clipboard) > 1){
         score:=score+1
         }
-    if  (clusterStrength(itemModData)+clusterIntelligence(itemModData) > 2){
+    if  (clusterStrength(Clipboard)+clusterIntelligence(Clipboard) > 2){
         score:=score+1
         }
-    if (clusterStrength(itemModData) > 2) {
-        if (clusterEnergyShield(itemModData) > 1) {
+    if (clusterStrength(Clipboard) > 2) {
+        if (clusterEnergyShield(Clipboard) > 1) {
             score:=score-1
             }
         }
-    if (clusterIntelligence(itemModData) > 2) {
-        if (clusterLife(itemModData) > 1) {
+    if (clusterIntelligence(Clipboard) > 2) {
+        if (clusterLife(Clipboard) > 1) {
             score:=score-1
             }
         }
@@ -242,57 +243,51 @@ SD1284(){
     }
 
 MD1284(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    AtkSpedT1 :=  RegExMatch(itemModData,"Minions have 3% increased Attack and Cast Speed")
-    vBite := RegExMatch(itemModData,"Vicious")
+    AtkSpedT1 :=  RegExMatch(Clipboard,"Minions have 3% increased Attack and Cast Speed")
+    vBite := RegExMatch(Clipboard,"Vicious")
 
     ;I must have T1 effect or Attributes in my 3 mods.
     score=0
     output = 0
-    if (clusterEffect(itemModData) > 1){
+    if (clusterEffect(Clipboard) > 1){
         score:=score+1
         }
     if (AtkSpedT1 > 0){
         score:=score+1
         }
-    if  (clusterEnergyShield(itemModData)+clusterLife(itemModData) > 1){
+    if  (clusterEnergyShield(Clipboard)+clusterLife(Clipboard) > 1){
         score:=score+1
         }
-    if  (clusterElementalResistance(itemModData)+clusterChaosResistance(itemModData)+vBite > 1){
+    if  (clusterElementalResistance(Clipboard)+clusterChaosResistance(Clipboard)+vBite > 1){
         score:=score+1
         }
     return score
     }
     
 BD1284(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    AtkSpedT1 :=  RegExMatch(itemModData,"3% increased Attack Speed")
+    AtkSpedT1 :=  RegExMatch(Clipboard,"3% increased Attack Speed")
     ;I must have T1 effect or Attributes in my 3 mods.
     score=0
-    if (clusterEffect(itemModData)>1){
+    if (clusterEffect(Clipboard)>1){
         score:=score+1
         }
     if (AtkSpedT1 > 0){
         score:=score+1
         }
-    if  (clusterLife(itemModData) + clusterDamage(itemModData) > 1){
+    if  (clusterLife(Clipboard) + clusterDamage(Clipboard) > 1){
         score:=score+1
         }
-    if  (clusterElementalResistance(itemModData)+clusterChaosResistance(itemModData)+clusterStrength(itemModData)+clusterIntelligence(itemModData)+clusterDexterity(itemModData)+clusterAllAttribute(itemModData) > 2){
+    if  (clusterElementalResistance(Clipboard)+clusterChaosResistance(Clipboard)+clusterStrength(Clipboard)+clusterIntelligence(Clipboard)+clusterDexterity(Clipboard)+clusterAllAttribute(Clipboard) > 2){
         score:=score+1
         }
     return score
     }
         
 LD1284H(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    AtkSpedT1 :=  RegExMatch(itemModData,"3% increased Attack and Cast Speed with Lightning Skills")
+    AtkSpedT1 :=  RegExMatch(Clipboard,"3% increased Attack and Cast Speed with Lightning Skills")
     score=0
     output = 0
-    if (clusterEffect(itemModData)>1){
+    if (clusterEffect(Clipboard)>1){
         score:=score+1
         }
     if (AtkSpedT1 > 0){
@@ -302,22 +297,20 @@ LD1284H(){
     }
         
 LD1284(){
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    AtkSpedT1 :=  RegExMatch(itemModData,"3% increased Attack and Cast Speed with Lightning Skills")
+    AtkSpedT1 :=  RegExMatch(Clipboard,"3% increased Attack and Cast Speed with Lightning Skills")
      
     score=0
     output = 0
-    if (clusterEffect(itemModData)>1){
+    if (clusterEffect(Clipboard)>1){
         score:=score+1
         }
     if (AtkSpedT1 > 0){
         score:=score+1
         }
-    if (clusterLife(itemModData) + clusterDamage(itemModData)+clusterEnergyShield(itemModData) >1){
+    if (clusterLife(Clipboard) + clusterDamage(Clipboard)+clusterEnergyShield(Clipboard) >1){
         score:=score+1
         }
-    if (clusterElementalResistance(itemModData)+clusterChaosResistance(itemModData)+clusterStrength(itemModData)+clusterIntelligence(itemModData)+clusterAllAttribute(itemModData) >2){
+    if (clusterElementalResistance(Clipboard)+clusterChaosResistance(Clipboard)+clusterStrength(Clipboard)+clusterIntelligence(Clipboard)+clusterAllAttribute(Clipboard) >2){
         score:=score+1
         }
     return score
@@ -325,17 +318,18 @@ LD1284(){
 
 QACluster()
     {
-    itemArray := StrSplit(Clipboard,"--------")
-    itemModData := itemArray[5]
-    return Effect clusterEffect(itemModData) Damage clusterDamage(itemModData) ES clusterEnergyShield(itemModData) Life clusterLife(itemModData) Attr clusterAllAttribute(itemModData) chaos clusterChaosResistance(itemModData) Dex clusterDexterity(itemModData) ele clusterElementalResistance(itemModData) Int clusterIntelligence(itemModData) Str clusterStrength(itemModData)
+    return Effect clusterEffect(Clipboard) Damage clusterDamage(Clipboard) ES clusterEnergyShield(Clipboard) Life clusterLife(Clipboard) Attr clusterAllAttribute(Clipboard) chaos clusterChaosResistance(Clipboard) Dex clusterDexterity(Clipboard) ele clusterElementalResistance(Clipboard) Int clusterIntelligence(Clipboard) Str clusterStrength(Clipboard)
     }
 
 eleBowPrefix()
     {    
     score = 0
-    LD:= RegExMatch(Clipboard,"([4-6][0-9][0-9]|3[7-9][0-9]|36[6-9]) Lightning Damage")
-    FD:= RegExMatch(Clipboard,"([3-4][0-9][0-9]|2[3-9][0-9]|22[3-9]) Fire Damage")
-    CD:= RegExMatch(Clipboard,"[2-4][0-9][0-9] Cold Damage")
+    ;LD:= RegExMatch(Clipboard,"([4-6][0-9][0-9]|3[7-9][0-9]|36[6-9]) Lightning Damage") (458)
+    LD:= RegExMatch(Clipboard,"([5-6][0-9][0-9]|4[5-9][0-9]) Lightning Damage")
+    ;FD:= RegExMatch(Clipboard,"([3-4][0-9][0-9]|2[3-9][0-9]|2[2-9][3-9]) Fire Damage") (279)
+    FD:= RegExMatch(Clipboard,"([3-4][0-9][0-9]|2[7-9][0-9]) Fire Damage")
+    ;CD:= RegExMatch(Clipboard,"[2-4][0-9][0-9] Cold Damage") (250)
+    CD:= RegExMatch(Clipboard,"([3-4][0-9][0-9]|2[5-9][0-9]) Cold Damage")
     if (LD >0){
         score:=score+1
         }

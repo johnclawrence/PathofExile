@@ -1,11 +1,12 @@
+SetBatchLines, -1
 CurrFirstX:=150
 CurrFirstY:=604
-currWidth:=70
+currWidth:=60
 CurrX:=7
 CurrY:=2
 
-iAltX := 100
-iAltY := 260
+iAltX := 95
+iAltY := 288
 iAugX := 230
 iAugY := 335
 
@@ -29,16 +30,16 @@ splashMove=1800
 useCooldownSleep(){
 	;This is somewhere around your ping.
 	;If you start to see "Item Unuseable" you need to increase this.
-	Sleep 0
+	Sleep 5
 	}
 checkRegexSleep(){
 	;This number + useCooldownSleep needs to be about double your ping.
-	Sleep 75
+	Sleep 70
 	}
 
 checkOCRSleep(){
     ;This number + useCooldownSleep needs to be about double your ping.
-    Sleep 75
+    Sleep 70
     }
 
 wiggleSleep(){
