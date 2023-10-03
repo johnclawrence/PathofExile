@@ -296,13 +296,65 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
                 }
             ;If the item is fractured, go for 4 mod. 
             }
-        SplashTextOn, 400, 600, LastCluster, %Clipboard%`n Score: %result%
+        SplashTextOn, 400, 800, LastCluster, %Clipboard%`n Score: %result%
         WinMove, LastCluster,, %splashMove%, 0
         useCurrency("Scour")
 		}
     SplashTextOff
 	}
+setRegex(regexVal,regexType){
+    ;RegexBar() RegexBar for normal harvestRegex for harvest
+    %regexType%()
+    MouseClick Left
+    SendInput, ^a
+    SendInput, %regexVal%
+    }
 
+
+
+useEssence(functionName){
+    %functionName%()
+    MouseClick Right
+    wiggleSleep()
+    essenceCraft()
+    MouseClick Left
+    useCooldownSleep()
+    return
+    }
+
+craftHarvest(re1,score,harvRE){
+    setRegex(harvRE,"harvestRegex")
+    harvestTop()
+    MouseClick Left
+    loop{
+        if GetKeyState("Esc", "P"){
+            break
+            }
+        harvestButton()
+        MouseClick Left
+        harvestCraft()
+        wiggleSleep()
+        getItemClipboard()
+        if (%re1%() = score){
+            break
+            }
+        }
+    }
+
+craftEssence(re1,score,essence){
+    global misscur
+    loop{
+        if GetKeyState("Esc", "P"){
+            break
+            }
+        useEssence(essence)
+        getItemClipboard()
+        if (%re1%() > (score-1)){
+            break
+            }
+        }
+    }
+    
 
 Numpad6::
     altToRegex(1,"m)Many|e\sBow$","",0)
@@ -337,4 +389,28 @@ Numpad1::
                 }
             }
         }
+    return
+
+Numpad2::
+    initFunction()
+    harvestCraft()
+    getItemClipboard()
+    if RegExMatch(Clipboard,"Item Level: [84-89]"){
+        if RegExMatch(Clipboard,"Adds 12 Passive Skills"){
+            if RegExMatch(Clipboard,"12% increased Lightning Damage"){
+                    harvRe:="reforge attack"
+                if RegExMatch(Clipboard,"Fractured"){
+                    craftHarvest("LD1284",3,harvRe)
+                    }
+                else{
+                    craftHarvest("LD1284H",2,harvRe)
+                    }
+                }
+            }
+        }
+    return
+
+
+Numpad8::
+    craftEssence("eleBowPrefix",2,"dHatred")
     return
