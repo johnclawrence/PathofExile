@@ -25,7 +25,7 @@ InvWidth = 53
 InvX = 5
 InvY = 12
 
-splashMove=1800
+splashMove=900
 
 useCooldownSleep(){
 	;This is somewhere around your ping.

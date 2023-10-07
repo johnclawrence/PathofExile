@@ -132,6 +132,16 @@ useCurrency(functionName) {
             MouseClick Left
             break
             }
+		if (functionName = "Annul"){
+            break
+            }
+		if (fcLoop = 25){
+			findCurrency(functionName)
+			}
+		if (fcLoop > 30){
+			misscur := functionName
+			break
+			}
         }
     useCooldownSleep()
     return
@@ -296,7 +306,7 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
                 }
             ;If the item is fractured, go for 4 mod. 
             }
-        SplashTextOn, 400, 600, LastCluster, %Clipboard%`n Score: %result%
+        SplashTextOn, 800, 1000, LastCluster, %Clipboard%`n Score: %result%
         WinMove, LastCluster,, %splashMove%, 0
         useCurrency("Scour")
 		}
