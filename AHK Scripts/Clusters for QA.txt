@@ -1,0 +1,162 @@
+Clusters for QA
+
+T1 Cluster
+Item Class: Jewels
+Rarity: Rare
+Giga Shard
+Large Cluster Jewel
+--------
+Requirements:
+Level: 67 (unmet)
+--------
+Item Level: 84
+--------
+Adds 12 Passive Skills (enchant)
+2 Added Passive Skills are Jewel Sockets (enchant)
+Added Small Passive Skills grant: 10% increased Spell Damage (enchant)
+--------
+Added Small Passive Skills also grant: 6% increased Damage
+Added Small Passive Skills also grant: +15 to Maximum Life
+Added Small Passive Skills also grant: +20 to Maximum Energy Shield
+Added Small Passive Skills also grant: +6 to All Attributes (fractured)
+Added Small Passive Skills also grant: +7% to Chaos Resistance
+Added Small Passive Skills also grant: +6% to all Elemental Resistances
+Added Small Passive Skills also grant: +14 to Strength
+Added Small Passive Skills also grant: +13 to Intelligence
+Added Small Passive Skills also grant: +12 to Dexterity
+
+--------
+Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
+--------
+Fractured Item
+--------
+Note: ~price 69 divine
+
+
+
+
+Item Class: Jewels
+Rarity: Rare
+Giga Shard
+Large Cluster Jewel
+--------
+Requirements:
+Level: 67 (unmet)
+--------
+Item Level: 84
+--------
+Adds 12 Passive Skills (enchant)
+2 Added Passive Skills are Jewel Sockets (enchant)
+Added Small Passive Skills grant: 10% increased Spell Damage (enchant)
+--------
+Added Small Passive Skills also grant: 5% increased Damage (fractured)
+Added Small Passive Skills also grant: +12 to Maximum Life
+Added Small Passive Skills also grant: +16 to Maximum Energy Shield
+Added Small Passive Skills also grant: +5 to All Attributes (fractured)
+Added Small Passive Skills also grant: +6% to Chaos Resistance
+Added Small Passive Skills also grant: +5% to all Elemental Resistances (fractured)
+Added Small Passive Skills also grant: +11 to Strength (fractured)
+Added Small Passive Skills also grant: +10 to Intelligence
+Added Small Passive Skills also grant: +9 to Dexterity (fractured)
+--------
+Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
+--------
+Fractured Item
+--------
+Note: ~price 69 divine
+
+Item Class: Jewels
+Rarity: Rare
+Giga Shard
+Large Cluster Jewel
+--------
+Requirements:
+Level: 67 (unmet)
+--------
+Item Level: 84
+--------
+Adds 12 Passive Skills (enchant)
+2 Added Passive Skills are Jewel Sockets (enchant)
+Added Small Passive Skills grant: 10% increased Spell Damage (enchant)
+--------
+Added Small Passive Skills also grant: 4% increased Damage
+Added Small Passive Skills also grant: +9 to Maximum Life (fractured)
+Added Small Passive Skills also grant: +12 to Maximum Energy Shield (fractured)
+Added Small Passive Skills also grant: +4 to All Attributes (fractured)
+Added Small Passive Skills also grant: +5% to Chaos Resistance
+Added Small Passive Skills also grant: +4% to all Elemental Resistances
+Added Small Passive Skills also grant: +8 to Strength
+Added Small Passive Skills also grant: +7 to Intelligence
+Added Small Passive Skills also grant: +6 to Dexterity
+--------
+Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
+--------
+Fractured Item
+--------
+Note: ~price 69 divine
+
+
+Item Class: Jewels
+Rarity: Rare
+Giga Shard
+Large Cluster Jewel
+--------
+Requirements:
+Level: 67 (unmet)
+--------
+Item Level: 84
+--------
+Adds 12 Passive Skills (enchant)
+2 Added Passive Skills are Jewel Sockets (enchant)
+Added Small Passive Skills grant: 10% increased Spell Damage (enchant)
+--------
+Added Small Passive Skills have 35% increased Effect
+Added Small Passive Skills also grant: 3% increased Damage
+Added Small Passive Skills also grant: +7 to Maximum Life
+Added Small Passive Skills also grant: +6 to Maximum Energy Shield
+Added Small Passive Skills also grant: +3 to All Attributes
+Added Small Passive Skills also grant: +4% to Chaos Resistance (fractured)
+Added Small Passive Skills also grant: +3% to all Elemental Resistances
+Added Small Passive Skills also grant: +4 to Strength
+Added Small Passive Skills also grant: +5 to Intelligence
+Added Small Passive Skills also grant: +4 to Dexterity
+--------
+Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
+--------
+Fractured Item
+--------
+Note: ~price 69 divine
+
+Item Class: Jewels
+Rarity: Rare
+Giga Shard
+Large Cluster Jewel
+--------
+Requirements:
+Level: 67 (unmet)
+--------
+Item Level: 84
+--------
+Adds 12 Passive Skills (enchant)
+2 Added Passive Skills are Jewel Sockets (enchant)
+Added Small Passive Skills grant: 10% increased Spell Damage (enchant)
+--------
+Added Small Passive Skills have 25% increased Effect (fractured)
+Added Small Passive Skills also grant: 2% increased Damage
+Added Small Passive Skills also grant: +2 to Maximum Life
+Added Small Passive Skills also grant: +3 to Maximum Energy Shield
+Added Small Passive Skills also grant: +2 to All Attributes
+Added Small Passive Skills also grant: +3% to Chaos Resistance
+Added Small Passive Skills also grant: +2% to all Elemental Resistances
+Added Small Passive Skills also grant: +2 to Strength
+Added Small Passive Skills also grant: +3 to Intelligence (fractured)
+Added Small Passive Skills also grant: +2 to Dexterity
+--------
+Place into an allocated Large Jewel Socket on the Passive Skill Tree. Added passives do not interact with jewel radiuses. Right click to remove from the Socket.
+--------
+Fractured Item
+--------
+Note: ~price 69 divine
+
+
+
