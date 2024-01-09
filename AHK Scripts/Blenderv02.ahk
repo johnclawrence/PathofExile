@@ -367,7 +367,10 @@ craftEssence(re1,score,essence){
     
 
 Numpad6::
-    altToRegex(1,"m)Many|e\sBow$","",0)
+    ;altToRegex(1,"m)Many|e\sBow$","",0)
+    ;altToRegex(1,"m)Training|e\sJewel$","m)Stalwart|Flaring|^Synthesised\sGhastly",0) ;T1
+    altToRegex(1,"m)Training|e\sJewel$","m)Sanguine|Tempered|Vile|^Synthesised\sGhastly",0) ;T2
+    ;altToRegex(1,"m)Training|e\sJewel$","m)Malignant|Healthy|Razor|^Synthesised\sGhastly",0) ;T3
     return
 
 Numpad7::

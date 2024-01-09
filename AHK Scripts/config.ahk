@@ -30,7 +30,7 @@ splashMove=900
 useCooldownSleep(){
 	;This is somewhere around your ping.
 	;If you start to see "Item Unuseable" you need to increase this.
-	Sleep 5
+	Sleep 50
 	}
 checkRegexSleep(){
 	;This number + useCooldownSleep needs to be about double your ping.
@@ -188,19 +188,160 @@ fosCraft()
     MouseMove 388,496,0
     }
 
-dWrath()
-    {
-    MouseMove 68,672,0
-    }
-dAnger()
-    {
-    MouseMove 62,430,0
-    }
 
-dHatred()
-    {
-    MouseMove 59,262,0
-    }
+EssenceY1:=200
+EssenceY2:=250
+EssenceY3:=300
+EssenceY4:=350
+EssenceY5:=400
+EssenceY6:=450
+EssenceY7:=500
+EssenceY8:=550
+EssenceY9:=600
+EssenceY10:=650
+EssenceY11:=700
+EssenceY12:=750
+EssenceX1:=75
+EssenceX2:=125
+EssenceX10:=550
+ExxenceX11:=600
+
+dGreed(){
+    MouseMove EssenceX1,EssenceY1,0
+}
+dContempt(){
+    MouseMove EssenceX1,EssenceY2,0
+}
+dHatred(){
+    MouseMove EssenceX1,EssenceY3,0
+}
+dWoe(){
+    MouseMove EssenceX1,EssenceY4,0
+}
+dFear(){
+    MouseMove EssenceX1,EssenceY5,0
+}
+dAnger(){
+    MouseMove EssenceX1,EssenceY6,0
+}
+dTorment(){
+    MouseMove EssenceX1,EssenceY7,0
+}
+dSorrow(){
+    MouseMove EssenceX1,EssenceY8,0
+}
+dRage(){
+    MouseMove EssenceX1,EssenceY9,0
+}
+dSuffering(){
+    MouseMove EssenceX1,EssenceY10,0
+}
+dWrath(){
+    MouseMove EssenceX1,EssenceY11,0
+}
+dDoubt(){
+    MouseMove EssenceX1,EssenceY12,0
+}
+sGreed(){
+    MouseMove EssenceX2,EssenceY1,0
+}
+sContempt(){
+    MouseMove EssenceX2,EssenceY2,0
+}
+sHatred(){
+    MouseMove EssenceX2,EssenceY3,0
+}
+sWoe(){
+    MouseMove EssenceX2,EssenceY4,0
+}
+sFear(){
+    MouseMove EssenceX2,EssenceY5,0
+}    
+sAnger(){
+    MouseMove EssenceX2,EssenceY6,0
+}
+sTorment(){
+    MouseMove EssenceX2,EssenceY7,0
+}
+sSorrow(){
+    MouseMove EssenceX2,EssenceY8,0
+}
+sRage(){
+    MouseMove EssenceX2,EssenceY9,0
+}
+sSuffering(){
+    MouseMove EssenceX2,EssenceY10,0
+}
+sWrath(){
+    MouseMove EssenceX2,EssenceY11,0
+}
+sDoubt(){
+    MouseMove EssenceX2,EssenceY12,0
+}
+
+
+dLoathing(){
+    MouseMove EssenceX10,EssenceY1,0
+}
+dZeal(){
+    MouseMove EssenceX10,EssenceY2,0
+}
+dAnguish(){
+    MouseMove EssenceX10,EssenceY3,0
+}
+dSpite(){
+    MouseMove EssenceX10,EssenceY4,0
+}
+dScorn(){
+    MouseMove EssenceX10,EssenceY5,0
+}
+dEnvy(){
+    MouseMove EssenceX10,EssenceY6,0
+}
+dMisery(){
+    MouseMove EssenceX10,EssenceY7,0
+}
+dDread(){
+    MouseMove EssenceX10,EssenceY8,0
+}
+sLoathing(){
+    MouseMove EssenceX10,EssenceY1,0
+}
+sZeal(){
+    MouseMove EssenceX10,EssenceY2,0
+}
+sAnguish(){
+    MouseMove EssenceX10,EssenceY3,0
+}
+sSpite(){
+    MouseMove EssenceX10,EssenceY4,0
+}
+sScorn(){
+    MouseMove EssenceX10,EssenceY5,0
+}
+sEnvy(){
+    MouseMove EssenceX10,EssenceY6,0
+}
+sMisery(){
+    MouseMove EssenceX10,EssenceY7,0
+}
+sDread(){
+    MouseMove EssenceX10,EssenceY8,0
+}
+
+cInsanity(){
+    MouseMove EssenceX11,EssenceY9,0
+}
+cHorror(){
+    MouseMove EssenceX11,EssenceY10,0
+}
+cDelirium(){
+    MouseMove EssenceX11,EssenceY11,0
+}
+cHysteria(){
+    MouseMove EssenceX11,EssenceY12,0
+}
+
 
 essenceCraft()
     {

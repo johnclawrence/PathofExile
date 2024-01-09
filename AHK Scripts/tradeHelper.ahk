@@ -132,3 +132,25 @@ F4::
 	MouseMove xTradeL,yTrade5,0
 	MouseMove xTradeR,yTrade5,9
     return
+
+F6::
+	MouseGetPos xPos,yPos
+	Send, {Control down}
+	sleep 20
+	MouseClick Left
+	sleep 20
+	Send, {Control up}
+	MouseMove 564,970,0
+	sleep 80
+	MouseClick Left
+	sleep 80
+	MouseMove 619,669,0
+	sleep 30
+	Send, {Control down}
+	sleep 20
+	MouseClick Left
+	sleep 20
+	Send, {Control up}
+	sleep 20
+	MouseMove xPos,yPos,0
+	return
