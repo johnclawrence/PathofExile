@@ -1,4 +1,4 @@
-#Include, config.ahk
+#Include, configUltraWide.ahk
 #Include, AffixRegex.ahk
 SetBatchLines, -1
 
@@ -121,8 +121,9 @@ useCurrency(functionName) {
             break
             }
         %functionName%()
+        sleep 10
         MouseClick Right
-        sleep 25
+        sleep 10
         MouseGetPos, X,Y
         PixelGetColor Color,%X%,%Y%,RGB
         ;Color := ToRGB()
@@ -323,7 +324,25 @@ setRegex(regexVal,regexType){
 
 
 useEssence(functionName){
-    %functionName%()
+    EssenceY1 := 230
+	EssenceY2 := 300
+	EssenceY3 := 360
+	EssenceY4 := 420
+	EssenceY5 := 500
+	EssenceY6 := 560
+	EssenceY7 := 630
+	EssenceY8 := 690
+	EssenceY9 := 750
+	EssenceY10 := 820
+	EssenceY11 := 880
+	EssenceY12 := 940
+	EssenceX1 := 90
+	EssenceX2 := 150
+	EssenceX10 := 725
+	EssenceX11 := 790
+	EssenceX3 := 220
+	EssenceX9 := 664
+    MouseMove EssenceX1,EssenceY3,0
     MouseClick Right
     wiggleSleep()
     essenceCraft()
@@ -333,7 +352,7 @@ useEssence(functionName){
     }
 
 craftHarvest(re1,score,harvRE){
-    setRegex(harvRE,"harvestRegex")
+    ;setRegex(harvRE,"harvestRegex")
     harvestTop()
     MouseClick Left
     loop{
@@ -367,16 +386,22 @@ craftEssence(re1,score,essence){
     
 
 Numpad6::
+    initFunction()
     ;altToRegex(1,"m)Many|e\sBow$","",0)
-    ;altToRegex(1,"m)Training|e\sJewel$","m)Stalwart|Flaring|^Synthesised\sGhastly",0) ;T1
-    altToRegex(1,"m)Training|e\sJewel$","m)Sanguine|Tempered|Vile|^Synthesised\sGhastly",0) ;T2
+    altToRegex(1,"m)Training|Stalwart|Flaring|e\sJewel$","m)Training|Stalwart|Flaring|^Synthesised\sGhastly",0) ;T1 save either. 
+    ;altToRegex(1,"m)Training|e\sJewel$","m)Sanguine|Tempered|Vile|^Synthesised\sGhastly",0) ;T2
     ;altToRegex(1,"m)Training|e\sJewel$","m)Malignant|Healthy|Razor|^Synthesised\sGhastly",0) ;T3
     return
 
 Numpad7::
     initFunction()
-    getItemClipboard()
-    MsgBox % MR384()
+    ;getItemClipboard()
+    ;MsgBox % MR384()
+    ;useEssence("Stuff")
+    ;Alteration()
+    ;sleep 20
+    ;MouseClick Right
+    useCurrency("Augmentation")
     return
 
 
@@ -419,10 +444,18 @@ Numpad2::
                     craftHarvest("LD1284H",2,harvRe)
                     }
                 }
+            if RegExMatch(Clipboard,"Minions deal 10% increased Damage"){
+                    harvRe:="reforge caster"
+                if RegExMatch(Clipboard,"Fractured"){
+                    craftHarvest("MD1284",3,harvRe)
+                    }
+                else{
+                    craftHarvest("MD1284",2,harvRe)
+                    }
+                }
             }
         }
     return
-
 
 Numpad8::
     craftEssence("eleBowPrefix",2,"dHatred")

@@ -5,10 +5,10 @@ currWidth:=60
 CurrX:=7
 CurrY:=2
 
-iAltX := 95
-iAltY := 288
-iAugX := 230
-iAugY := 335
+iAltX := 140
+iAltY := 358
+iAugX := 300
+iAugY := 439
 
 AltX := iAltX
 AltY := iAltY
@@ -16,12 +16,12 @@ AugX := iAugX
 AugY := iAugY
 misscur :=0
 
-InvFirstX = 1296
-InvFirstY = 615
-InvLastX = 1873
-InvLastY = 822
+InvFirstX = 2592
+InvFirstY = 798
+InvLastX = 3382
+InvLastY = 1092
 InvLastColor = 0x090909
-InvWidth = 53
+InvWidth = 70
 InvX = 5
 InvY = 12
 
@@ -30,16 +30,16 @@ splashMove=900
 useCooldownSleep(){
 	;This is somewhere around your ping.
 	;If you start to see "Item Unuseable" you need to increase this.
-	Sleep 80
+	Sleep 100
 	}
 checkRegexSleep(){
 	;This number + useCooldownSleep needs to be about double your ping.
-	Sleep 80
+	Sleep 20
 	}
 
 checkOCRSleep(){
     ;This number + useCooldownSleep needs to be about double your ping.
-    Sleep 80
+    Sleep 100
     }
 
 wiggleSleep(){
@@ -48,95 +48,95 @@ wiggleSleep(){
 	}
 	
 Trans() {
-	TransX = 50
-	TransY = 260
+	TransX = 70
+	TransY = 367
 	MouseMove TransX,TransY,0
-	return 0x325180
+	return 0x294265
 	}
 	
 Alteration() {
 	global AltX
 	global AltY
 	MouseMove AltX,AltY,0
-	return 0x439694
+	return 0x479C8A
 	}
 
 Augmentation() {
     global AugX
     global AugY
     MouseMove AugX,AugY,0
-    return 0x2F2F38
+    return 0x212431
     }
 	
 Regal() {
-	RegalX = 440
-	RegalY = 270
+	RegalX = 580
+	RegalY = 367
 	MouseMove RegalX,RegalY,0
-	return 0x2A3447
+	return 0x26344C
 	}
 
 Alch() {
-	AlchX = 490
-	AlchY = 260
+	AlchX = 655
+	AlchY = 364
 	MouseMove AlchX,AlchY,0
-	return 0x7C6C50
+	return 0x6A5A3C
 	}
 
 Scour() {
-	ScourX = 435
-	ScourY = 500
+	ScourX = 579
+	ScourY = 676
 	MouseMove ScourX,ScourY,0
-	return 0x646568
+	return 0x616466
 	}
 
 Exalt() {
-    ExaltX = 300
-    ExaltY = 275
+    ExaltX = 400
+    ExaltY = 363
     MouseMove ExaltX,ExaltY,0
-    return 0x463625
+    return 0x3D2F23
     }
 
 Annul() {
-    AnnulX = 164
-    AnnulY = 260
+    AnnulX = 226
+    AnnulY = 363
     MouseMove AnnulX,AnnulY,0
-    return 0x071547
+    return 0x060818
     }
 
 moveToCraft(){
-	CraftX = 350
-	CraftY = 450
+	CraftX = 439
+	CraftY = 614
 	MouseMove CraftX,CraftY,0
 	return
 	}
 
 harvestCraft(){
-    harvestCraftX := 960
-    harvestCraftY := 450
+    harvestCraftX := 1721
+    harvestCraftY := 605
     MouseMove harvestCraftX,harvestCraftY,0
     }
 
 RegexBar(){
-	RegexX = 480
-	RegexY = 895
+	RegexX = 632
+	RegexY = 1191
 	MouseMove RegexX,RegexY,0
 	}
 	
 harvestRegex(){
-    harvestRegexX := 500
-    harvestRegexY := 815
+    harvestRegexX := 1733
+    harvestRegexY := 807
     MouseMove harvestRegexX,harvestRegexY,0
     }
 	
 harvestButton(){
-    harvestButtonX := 970
-    harvestButtonY := 600
+    harvestButtonX := 1737
+    harvestButtonY := 805
     MouseMove harvestButtonX,harvestButtonY,0
     }
     
 harvestTop(){
-    harvestTopX := 533
-    harvestTopY := 300
+    harvestTopX := 1043
+    harvestTopY := 413
     MouseMove harvestTopX,harvestTopY,0
     }
 
@@ -189,26 +189,26 @@ fosCraft()
     }
 
 
-EssenceY1:=200
-EssenceY2:=250
-EssenceY3:=300
-EssenceY4:=350
-EssenceY5:=400
-EssenceY6:=450
-EssenceY7:=500
-EssenceY8:=550
-EssenceY9:=600
-EssenceY10:=650
-EssenceY11:=700
-EssenceY12:=750
-EssenceX1:=75
-EssenceX2:=125
-EssenceX10:=550
-ExxenceX11:=600
+EssenceY1 := 230
+EssenceY2 := 300
+EssenceY3 := 360
+EssenceY4 := 420
+EssenceY5 := 500
+EssenceY6 := 560
+EssenceY7 := 630
+EssenceY8 := 690
+EssenceY9 := 750
+EssenceY10 := 820
+EssenceY11 := 880
+EssenceY12 := 940
+EssenceX1 := 90
+EssenceX2 := 150
+EssenceX10 := 725
+ExxenceX11 := 790
 
 dGreed(){
     MouseMove EssenceX1,EssenceY1,0
-}
+    }
 dContempt(){
     MouseMove EssenceX1,EssenceY2,0
 }
@@ -345,5 +345,5 @@ cHysteria(){
 
 essenceCraft()
     {
-    MouseMove 407,652,0
+    MouseMove 548,869,0
     }
