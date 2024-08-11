@@ -1,8 +1,8 @@
 SetBatchLines, -1
 clusterEffect(itemModData)
     {
-    if RegExMatch(itemModData,"% increased Effect"){
-        if RegExMatch(itemModData,"35% increased Effect"){
+    if RegExMatch(itemModData,"increased Effect"){
+        if RegExMatch(itemModData,"Powerful"){
             return 2
         }
         return 1
@@ -12,17 +12,17 @@ clusterEffect(itemModData)
 
 clusterDamage(itemModData)
     {
-    if RegExMatch(itemModData,"% increased Damage"){
-        if RegExMatch(itemModData,"4% increased Damage"){
+    if RegExMatch(itemModData,"increased Damage"){
+        if RegExMatch(itemModData,"Deadly"){
             return 3
         }
-        if RegExMatch(itemModData,"4% increased Damage"){
+        if RegExMatch(itemModData,"Destructive"){
             return 3
         }
-        if RegExMatch(itemModData,"4% increased Damage"){
+        if RegExMatch(itemModData,"Dangerous"){
             return 3
         }
-        if RegExMatch(itemModData,"3% increased Damage"){
+        if RegExMatch(itemModData,"Hazardous"){
             return 2
         }        
         return 1
@@ -33,16 +33,16 @@ clusterDamage(itemModData)
 clusterEnergyShield(itemModData)
     {
     if RegExMatch(itemModData,"to Maximum Energy Shield"){
-        if RegExMatch(itemModData,"(1[7-9]|20) to Maximum Energy Shield"){
+        if RegExMatch(itemModData,"Pulsing"){
             return 5
         }
-        if RegExMatch(itemModData,"(1[3-9]|20) to Maximum Energy Shield"){
+        if RegExMatch(itemModData,"Radiating"){
             return 4
         }        
-        if RegExMatch(itemModData,"(1[0-9]|20) to Maximum Energy Shield"){
+        if RegExMatch(itemModData,"Glowing"){
             return 3
         }  
-        if RegExMatch(itemModData,"([6-9]|1[0-9]|20) to Maximum Energy Shield"){
+        if RegExMatch(itemModData,"Glimmering"){
             return 2
         }          
         return 1
@@ -53,16 +53,16 @@ clusterEnergyShield(itemModData)
 clusterLife(itemModData)
     {
     if RegExMatch(itemModData,"to Maximum Life"){
-        if RegExMatch(itemModData,"1[4-6] to Maximum Life"){
+        if RegExMatch(itemModData,"Stout"){
             return 5
         }
-        if RegExMatch(itemModData,"1[1-9] to Maximum Life"){
+        if RegExMatch(itemModData,"Stalwart"){
             return 4
         }        
-        if RegExMatch(itemModData,"([8-9]|1[0-6]) to Maximum Life"){
+        if RegExMatch(itemModData,"Sanguine"){
             return 3
         }  
-        if RegExMatch(itemModData,"([4-9]|1[0-6]) to Maximum Life"){
+        if RegExMatch(itemModData,"Healthy"){
             return 2
         }          
         return 1
@@ -74,16 +74,16 @@ clusterLife(itemModData)
 clusterAllAttribute(itemModData)
     {
     if RegExMatch(itemModData,"to All Attributes"){
-        if RegExMatch(itemModData,"6 to All Attributes"){
+        if RegExMatch(itemModData,"Heavens"){
             return 5
         }
-        if RegExMatch(itemModData,"[5-6] to All Attributes"){
+        if RegExMatch(itemModData,"Comet"){
             return 4
         }        
-        if RegExMatch(itemModData,"[4-6] to All Attributes"){
+        if RegExMatch(itemModData,"Meteor"){
             return 3
         }  
-        if RegExMatch(itemModData,"[3-6] to All Attributes"){
+        if RegExMatch(itemModData,"Sky"){
             return 2
         }          
         return 1
@@ -94,17 +94,17 @@ clusterAllAttribute(itemModData)
     
 clusterChaosResistance(itemModData)
     {
-    if RegExMatch(itemModData,"% to Chaos Resistance"){
-        if RegExMatch(itemModData,"[7-8]% to Chaos Resistance"){
+    if RegExMatch(itemModData,"to Chaos Resistance"){
+        if RegExMatch(itemModData,"Exile"){
             return 5
         }
-        if RegExMatch(itemModData,"[6-8]% to Chaos Resistance"){
+        if RegExMatch(itemModData,"Expulsion"){
             return 4
         }        
-        if RegExMatch(itemModData,"[5-8]% to Chaos Resistance"){
+        if RegExMatch(itemModData,"Eviction"){
             return 3
         }  
-        if RegExMatch(itemModData,"[4-8]% to Chaos Resistance"){
+        if RegExMatch(itemModData,"Banishment"){
             return 2
         }          
         return 1
@@ -115,16 +115,16 @@ clusterChaosResistance(itemModData)
 clusterDexterity(itemModData)
     {
     if RegExMatch(itemModData,"to Dexterity"){
-        if RegExMatch(itemModData,"1[2-4] to Dexterity"){
+        if RegExMatch(itemModData,"Panther"){
             return 5
         }
-        if RegExMatch(itemModData,"(9|1[0-4]) to Dexterity"){
+        if RegExMatch(itemModData,"Falcon"){
             return 4
         }        
-        if RegExMatch(itemModData,"([6-9]|1[0-4]) to Dexterity"){
+        if RegExMatch(itemModData,"Fox"){
             return 3
         }  
-        if RegExMatch(itemModData,"([4-9]|1[0-4]) to Dexterity"){
+        if RegExMatch(itemModData,"Lynx"){
             return 2
         }          
         return 1
@@ -134,17 +134,17 @@ clusterDexterity(itemModData)
 
 clusterElementalResistance(itemModData)
     {
-    if RegExMatch(itemModData,"% to all Elemental Resistance"){
-        if RegExMatch(itemModData,"6% to all Elemental Resistance"){
+    if RegExMatch(itemModData,"to all Elemental Resistance"){
+        if RegExMatch(itemModData,"Rainbow"){
             return 5
         }
-        if RegExMatch(itemModData,"[5-6]% to all Elemental Resistance"){
+        if RegExMatch(itemModData,"Variegation"){
             return 4
         }        
-        if RegExMatch(itemModData,"[4-6]% to all Elemental Resistance"){
+        if RegExMatch(itemModData,"Kaleidoscope"){
             return 3
         }  
-        if RegExMatch(itemModData,"[3-6]% to all Elemental Resistance"){
+        if RegExMatch(itemModData,"Prism"){
             return 2
         }          
         return 1
@@ -157,16 +157,16 @@ clusterElementalResistance(itemModData)
 clusterIntelligence(itemModData)
     {
     if RegExMatch(itemModData,"to Intelligence"){
-        if RegExMatch(itemModData,"1[2-4] to Intelligence"){
+        if RegExMatch(itemModData,"Philosopher"){
             return 5
         }
-        if RegExMatch(itemModData,"(9|1[0-4]) to Intelligence"){
+        if RegExMatch(itemModData,"Augur"){
             return 4
         }        
-        if RegExMatch(itemModData,"([6-9]|1[0-4]) to Intelligence"){
+        if RegExMatch(itemModData,"Prodigy"){
             return 3
         }  
-        if RegExMatch(itemModData,"([4-9]|1[0-4]) to Intelligence"){
+        if RegExMatch(itemModData,"Student"){
             return 2
         }          
         return 1
@@ -177,16 +177,16 @@ clusterIntelligence(itemModData)
 clusterStrength(itemModData)
     {
         if RegExMatch(itemModData,"to Strength"){
-            if RegExMatch(itemModData,"1[2-4] to Strength"){
+            if RegExMatch(itemModData,"Gorilla"){
                 return 5
             }
-            if RegExMatch(itemModData,"(9|1[0-4]) to Strength"){
+            if RegExMatch(itemModData,"Lion"){
                 return 4
             }        
-            if RegExMatch(itemModData,"([6-9]|1[0-4]) to Strength"){
+            if RegExMatch(itemModData,"Bear"){
                 return 3
             }  
-            if RegExMatch(itemModData,"([4-9]|1[0-4]) to Strength"){
+            if RegExMatch(itemModData,"Wrestler"){
                 return 2
             }          
             return 1
@@ -325,19 +325,98 @@ eleBowPrefix()
     {    
     score = 0
     ;LD:= RegExMatch(Clipboard,"([4-6][0-9][0-9]|3[7-9][0-9]|36[6-9]) Lightning Damage") (458)
-    LD:= RegExMatch(Clipboard,"([5-6][0-9][0-9]|4[5-9][0-9]) Lightning Damage")
+    FD3:= RegExMatch(Clipboard,"Blasting")
+    FD2:= RegExMatch(Clipboard,"Cremating")
+    FD1:= RegExMatch(Clipboard,"Carbonising")
     ;FD:= RegExMatch(Clipboard,"([3-4][0-9][0-9]|2[3-9][0-9]|2[2-9][3-9]) Fire Damage") (279)
-    FD:= RegExMatch(Clipboard,"([3-4][0-9][0-9]|2[7-9][0-9]) Fire Damage")
+    LD3:= RegExMatch(Clipboard,"Discharging")
+    LD2:= RegExMatch(Clipboard,"Electrocuting")
+    LD1:= RegExMatch(Clipboard,"Vapourising")
     ;CD:= RegExMatch(Clipboard,"[2-4][0-9][0-9] Cold Damage") (250)
-    CD:= RegExMatch(Clipboard,"([3-4][0-9][0-9]|2[5-9][0-9]) Cold Damage")
-    if (LD >0){
+    CD3:= RegExMatch(Clipboard,"Polar")
+    CD2:= RegExMatch(Clipboard,"Entombing")
+    CD1:= RegExMatch(Clipboard,"Crystalising")
+    if (LD3+LD2+LD1 >0){
         score:=score+1
         }
-    if (FD >0){
+    if (FD1+FD2+FD3 >0){
         score:=score+1
         }
-    if (CD >0){
+    if (CD3+CD2+CD1 >0){
         score:=score+1
         }
+    return score
+    }
+eleQuiverSuffix(){
+    score=0
+    extraArrow:= RegExMatch(Clipboard,"Splintering")
+    if (extraArrow>0){
+        score:=score+1
+    }
+    return score
+    }
+
+mdRing(){
+    score=0
+    T1Speed:= RegExMatch(Clipboard,"Agitation")
+    if (T1Speed>0){
+        score:=score+1
+        }
+    return score
+    }
+
+CD875(){
+    score = 0
+    P0:=RegExMatch(Clipboard,"Fan of Blades")
+    P1:=RegExMatch(Clipboard,"Feed the Fury")
+    P2:=RegExMatch(Clipboard,"Fuel the Fight")
+    S1:=RegExMatch(Clipboard,"Martial Prowess")
+    P3:=RegExMatch(Clipboard,"Wind-up")
+    P4:=RegExMatch(Clipboard,"Vicious Skewering")
+    P5:=RegExMatch(Clipboard,"Drive the Destruction")
+    P6:=RegExMatch(Clipboard,"Disease Vector")
+    P7:=RegExMatch(Clipboard,"Devastator")
+    P8:=RegExMatch(Clipboard,"Calamitous")
+    P9:=RegExMatch(Clipboard,"Aggressive Defence")
+    S2:=RegExMatch(Clipboard,"Heavy Hitter")
+    S3:=RegExMatch(Clipboard,"Smite the Weak")
+
+    if (S1+S2+S3>0){
+        score := score+1
+        }
+    if (P0>0){
+        score := score+1
+        }
+    if (P0>0){
+        score := score+2
+        }
+    if (P1>0){
+        score := score+1
+        }
+    if (P2>0){
+        score := score+1
+        }
+    if (P3>0){
+        score := score+1
+        }
+    if (P4>0){
+        score := score+1
+        }
+    if (P5>0){
+        score := score+0
+        }
+    if (P6>0){
+        score := score+1
+        }
+    if (P7>0){
+        score := score+1
+        }
+    if (P8>0){
+        score := score+1
+        }
+    if (P9>0){
+        score := score+0
+        }
+    
     return score
     }

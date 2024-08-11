@@ -30,21 +30,21 @@ splashMove=900
 useCooldownSleep(){
 	;This is somewhere around your ping.
 	;If you start to see "Item Unuseable" you need to increase this.
-	Sleep 80
+	Sleep 100
 	}
 checkRegexSleep(){
 	;This number + useCooldownSleep needs to be about double your ping.
-	Sleep 80
+	Sleep 100
 	}
 
 checkOCRSleep(){
     ;This number + useCooldownSleep needs to be about double your ping.
-    Sleep 80
+    Sleep 100
     }
 
 wiggleSleep(){
 	;This is the cooldown to wait the stuff on your cursor to stop moving
-	Sleep 10
+	Sleep 30
 	}
 	
 Trans() {

@@ -121,27 +121,31 @@ useCurrency(functionName) {
             break
             }
         %functionName%()
-        sleep 10
+        wiggleSleep()
         MouseClick Right
-        sleep 10
+        wiggleSleep()
         MouseGetPos, X,Y
         PixelGetColor Color,%X%,%Y%,RGB
         ;Color := ToRGB()
-        if ((Color=curColor))
-            {
+        if ((Color=curColor)){
             moveToCraft()
+            wiggleSleep()
+            MouseGetPos, X,Y
+            PixelGetColor Color,%X%,%Y%,RGB
+            if ((Color=curColor)){    
+                MouseClick Left
+                break
+                }
+            }
+		if (functionName = "Annul"){
+            moveToCraft()
+            wiggleSleep()
             MouseClick Left
             break
             }
-		if (functionName = "Annul"){
-            break
-            }
 		if (fcLoop = 25){
+            break
 			findCurrency(functionName)
-			}
-		if (fcLoop > 30){
-			misscur := functionName
-			break
 			}
         }
     useCooldownSleep()
@@ -284,6 +288,7 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
 		;Loop Code
 		if (Mode=0){
 			altToRegex(0,blueRegex1,blueRegex2,0)
+            sleep 20
 			useCurrency("Augmentation")
 			}
 		if (Mode=1){
@@ -308,7 +313,7 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
             ;If the item is fractured, go for 4 mod. 
             }
         SplashTextOn, 800, 1000, LastCluster, %Clipboard%`n Score: %result%
-        WinMove, LastCluster,, %splashMove%, 0
+        WinMove, LastCluster,, %splashMove%, 400
         useCurrency("Scour")
 		}
     SplashTextOff
@@ -323,26 +328,31 @@ setRegex(regexVal,regexType){
 
 
 
-useEssence(functionName){
-    EssenceY1 := 230
-	EssenceY2 := 300
-	EssenceY3 := 360
-	EssenceY4 := 420
-	EssenceY5 := 500
-	EssenceY6 := 560
-	EssenceY7 := 630
-	EssenceY8 := 690
-	EssenceY9 := 750
-	EssenceY10 := 820
-	EssenceY11 := 880
-	EssenceY12 := 940
-	EssenceX1 := 90
-	EssenceX2 := 150
-	EssenceX10 := 725
-	EssenceX11 := 790
-	EssenceX3 := 220
-	EssenceX9 := 664
-    MouseMove EssenceX1,EssenceY3,0
+useEssence(essence){
+    Y1 := 230
+	Y2 := 300
+	Y3 := 360
+	Y4 := 420
+	Y5 := 500
+	Y6 := 560
+	Y7 := 630
+	Y8 := 690
+	Y9 := 750
+	Y10 := 820
+	Y11 := 880
+	Y12 := 940
+	X1 := 90
+	X2 := 150
+	X10 := 725
+	X11 := 790
+	X3 := 220
+	X9 := 664
+    if (essence = "deafTorment"){
+        MouseMove X1,Y7,0
+        }
+    if (essence = "deafFear"){
+        MouseMove X1,Y5,0
+        }
     MouseClick Right
     wiggleSleep()
     essenceCraft()
@@ -364,7 +374,7 @@ craftHarvest(re1,score,harvRE){
         harvestCraft()
         wiggleSleep()
         getItemClipboard()
-        if (%re1%() = score){
+        if (%re1%() >= score){
             break
             }
         }
@@ -391,6 +401,7 @@ Numpad6::
     altToRegex(1,"m)Training|Stalwart|Flaring|e\sJewel$","m)Training|Stalwart|Flaring|^Synthesised\sGhastly",0) ;T1 save either. 
     ;altToRegex(1,"m)Training|e\sJewel$","m)Sanguine|Tempered|Vile|^Synthesised\sGhastly",0) ;T2
     ;altToRegex(1,"m)Training|e\sJewel$","m)Malignant|Healthy|Razor|^Synthesised\sGhastly",0) ;T3
+    ;altToRegex(1,"m)Deathless|r\sShield$","",0)
     return
 
 Numpad7::
@@ -401,7 +412,11 @@ Numpad7::
     ;Alteration()
     ;sleep 20
     ;MouseClick Right
-    useCurrency("Augmentation")
+    ;altToRegex(1,"m)Powerful|Glowing|Sanguine|^Lar","m)Eviction|zi|Kaleidoscope|Jewel$",0)
+    ;MsgBox % clusterLife(Clipboard)
+    MsgBox % MD1284()
+    ;altToRegex(1,"m)Impala|Flask$","",0)
+    ;useEssence("deafTorment")
     return
 
 
@@ -412,7 +427,7 @@ Numpad1::
     if RegExMatch(Clipboard,"Item Level: [84-89]"){
         if RegExMatch(Clipboard,"Adds 12 Passive Skills"){
             if RegExMatch(Clipboard,"Minions deal 10% increased Damage"){
-                altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|^Lar","m)Eviction|zi|Kaleidoscope|jewel$","MD1284")
+                altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|^Lar","m)Eviction|zi|Kaleidoscope|Jewel$","MD1284")
                 }
             if RegExMatch(Clipboard,"10% increased Spell Damage"){
                 altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")   
@@ -425,6 +440,11 @@ Numpad1::
             if RegExMatch(Clipboard,"6% increased Mana Reservation Efficiency of Skills"){
                 altAugRegalToRegex(1,"m)Introspection|Powerful|Stout|Pulsing|^Small","","MR384")
                 }
+            }
+        }
+    if RegExMatch(Clipboard,"Adds 8 Passive Skills"){
+            if RegExMatch(Clipboard,"Dagger Attacks deal 12% increased Damage with Hits and Ailments"){
+                altAugRegalToRegex(1,"m)^Notable|^Lar","m)Significance|Fan|Jewel$","CD875")
             }
         }
     return
@@ -458,5 +478,15 @@ Numpad2::
     return
 
 Numpad8::
-    craftEssence("eleBowPrefix",2,"dHatred")
+    initFunction()
+    essenceCraft()
+    getItemClipboard()
+    if RegExMatch(Clipboard,"Item Class: Quivers"){
+        craftEssence("eleQuiverSuffix",1,"deafTorment")
+    }
+    if RegExMatch(Clipboard,"Bone Ring"){
+        craftEssence("mdRing",1,"deafFear")
+    }
+    ;craftEssence("eleBowPrefix",1,"dHatred")
     return
+
