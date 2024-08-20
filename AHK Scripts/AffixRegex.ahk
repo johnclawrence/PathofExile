@@ -220,7 +220,7 @@ SD1284(){
     if (clusterEffect(Clipboard) > 1){
         score:=score+1
         }
-    if (clusterAllAttribute(Clipboard) > 1){
+    if (clusterAllAttribute(Clipboard)+clusterElementalResistance(Clipboard) > 1){
         score:=score+1
         }
     if  (clusterEnergyShield(Clipboard)+clusterLife(Clipboard)+clusterDamage(Clipboard) > 1){
@@ -242,6 +242,24 @@ SD1284(){
     return score
     }
 
+SD1284M(){
+    score=0
+    if (clusterEffect(Clipboard) > 1){
+        score:=score+1
+        }
+    if (clusterAllAttribute(Clipboard) > 2){
+        score:=score+1
+        }
+    if  (clusterEnergyShield(Clipboard) > 2){
+        score:=score+1
+        }
+    if  (clusterIntelligence(Clipboard) > 2){
+        score:=score+1
+        }
+        
+    return score
+    }
+    
 MD1284(){
     AtkSpedT1 :=  RegExMatch(Clipboard,"Minions have 3% increased Attack and Cast Speed")
     vBite := RegExMatch(Clipboard,"Vicious")
@@ -364,7 +382,23 @@ mdRing(){
         }
     return score
     }
-
+MinionGhastlyAdorned(){
+    score=0
+    T1Speed:=RegExMatch(Clipboard,"Training")
+    T1Life:=RegExMatch(Clipboard,"Stalwart")
+    T1Damage:=RegExMatch(Clipboard,"Flaring")
+    T2Life:=RegExMatch(Clipboard,"Sanguine")
+    if (T1Speed>0){
+        score:=score+1
+        }
+    if (T1Life+T2Life>0){
+        score:=score+1
+        }
+    if (T1Damage>0){
+        score:=score+1
+        }
+    return score
+    }
 CD875(){
     score = 0
     P0:=RegExMatch(Clipboard,"Fan of Blades")
@@ -418,5 +452,26 @@ CD875(){
         score := score+0
         }
     
+    return score
+    }
+
+WD1284(){
+    score=0
+    AtkSpedT1 :=  RegExMatch(Clipboard,"Added Small Passive Skills also grant: 3% increased Attack Speed")
+    if (clusterEffect(Clipboard) > 1){
+        score:=score+1
+        }
+    if  ((clusterLife(Clipboard) + clusterDamage(Clipboard)+clusterEnergyShield(Clipboard) >1)){
+        score:=score+1
+        }
+    if  ((clusterIntelligence(Clipboard)+clusterElementalResistance(Clipboard)+clusterChaosResistance(Clipboard)> 2)){
+        score:=score+1
+        }
+    if (AtkSpedT1 > 0){
+        score:=score+1
+        }
+    if (clusterAllAttribute(Clipboard) > 0){
+        score:=score+1
+        }
     return score
     }
