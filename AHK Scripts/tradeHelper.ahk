@@ -157,79 +157,79 @@ F6::
 	MouseMove xPos,yPos,0
 	return
 	
-	
+clickuse(xPos,yPos)
+	{	sleepdur=65
+		shortsleepdur=20
+		sleep %sleepdur%
+		MouseClick Left
+		sleep %sleepdur%
+		Send, {Control down}
+		sleep %shortsleepdur%
+		MouseClick Left
+		sleep %shortsleepdur%
+		Send, {Control up}
+		sleep %shortsleepdur%
+		MouseMove xPos,yPos
+		sleep %sleepdur%
+		MouseClick Right
+		sleep %sleepdur%
+	}
+
 F7::
 	sleepdur=65
+	shortsleepdur=20
 	MouseGetPos xPos,yPos
 	MouseClick Right
 	sleep %sleepdur%
 	MouseMove xPos,yPos-invWidth,0
-	sleep %sleepdur%
-	MouseClick Left
-	sleep %sleepdur%
-	MouseMove xPos,yPos
-	sleep %sleepdur%
-	MouseClick Right
-	sleep %sleepdur%
+	clickuse(xPos,yPos)
 	MouseMove xPos,yPos+invWidth,0
-	sleep %sleepdur%
-	MouseClick Left
-	sleep %sleepdur%
-	MouseMove xPos,yPos
-	sleep %sleepdur%
-	MouseClick Right
-	sleep %sleepdur%
+	clickuse(xPos,yPos)
 	MouseMove xPos-invWidth,yPos,0
-	sleep %sleepdur%
-	MouseClick Left
-	sleep %sleepdur%
-	MouseMove xPos,yPos
-	sleep %sleepdur%
-	MouseClick Right
-	sleep %sleepdur%
+	clickuse(xPos,yPos)
 	MouseMove xPos+invWidth,yPos,0
-	sleep %sleepdur%
-	MouseClick Left
-	sleep %sleepdur%
-	MouseMove xPos,yPos
-	sleep %sleepdur%
-	MouseClick Right
-	sleep %sleepdur%
+	clickuse(xPos,yPos)
 	MouseMove xPos+invWidth,yPos-invWidth,0
-	sleep %sleepdur%
-	MouseClick Left
-	sleep %sleepdur%
-	MouseMove xPos,yPos
-	sleep %sleepdur%
-	MouseClick Right
-	sleep %sleepdur%
+	clickuse(xPos,yPos)
 	MouseMove xPos-invWidth,yPos+invWidth,0
-	sleep %sleepdur%
-	MouseClick Left
-	sleep %sleepdur%
-	MouseMove xPos,yPos
-	sleep %sleepdur%
-	MouseClick Right
-	sleep %sleepdur%
+	clickuse(xPos,yPos)
 	MouseMove xPos-invWidth,yPos-invWidth,0
-	sleep %sleepdur%
-	MouseClick Left
-	sleep %sleepdur%
-	MouseMove xPos,yPos
-	sleep %sleepdur%
-	MouseClick Right
-	sleep %sleepdur%
+	clickuse(xPos,yPos)
+	MouseMove xPos+invWidth,yPos+invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos+invWidth,yPos+invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos,yPos-invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos,yPos+invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos-invWidth,yPos,0
+	clickuse(xPos,yPos)
+	MouseMove xPos+invWidth,yPos,0
+	clickuse(xPos,yPos)
+	MouseMove xPos+invWidth,yPos-invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos+invWidth,yPos-invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos+invWidth,yPos-invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos-invWidth,yPos+invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos-invWidth,yPos-invWidth,0
+	clickuse(xPos,yPos)
+	MouseMove xPos+invWidth,yPos+invWidth,0
+	clickuse(xPos,yPos)
 	MouseMove xPos+invWidth,yPos+invWidth,0
 	sleep %sleepdur%
 	MouseClick Left
 	sleep %sleepdur%
+	Send, {Control down}
+	sleep %shortsleepdur%
+	MouseClick Left
+	sleep %shortsleepdur%
+	Send, {Control up}
+	sleep %shortsleepdur%
 	MouseMove xPos,yPos
-	sleep %sleepdur%
-	MouseClick Left
-	sleep %sleepdur%
-	MouseMove xPos+invWidth+invWidth+invWidth,yPos
-	sleep %sleepdur%
-	MouseClick Left
 	return
 
 LeftSubFunction(price,offset){
