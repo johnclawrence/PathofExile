@@ -1,4 +1,4 @@
-#Include, configUltraWide.ahk
+#Include, config.ahk
 #Include, AffixRegex.ahk
 SetBatchLines, -1
 
@@ -268,6 +268,23 @@ ExaltAnnulToRegex(exRegex)
         ExaltAnnulToRegex(exRegex)
         }
     }
+
+AugAnnulToRegex(exRegex)
+    {
+    SplashTextOn, 800, 1000, LastCluster, %Clipboard%`n Score: %result%
+    WinMove, LastCluster,, %splashMove%, 400
+    useCurrency("Annul")
+    getItemClipboard()
+    result := %exRegex%()
+    if (result > 0){
+        useCurrency("Augmentation")
+        }
+    getItemClipboard()
+    result := %exRegex%()
+    if (result = 1){
+        AugAnnulToRegex(exRegex)
+        }
+    }
 altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex) 
 	{
 	;Mode 0: Alt Check Aug Regal Check 
@@ -313,11 +330,52 @@ altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex)
             ;If the item is fractured, go for 4 mod. 
             }
         SplashTextOn, 800, 1000, LastCluster, %Clipboard%`n Score: %result%
-        WinMove, LastCluster,, %splashMove%, 400
+        WinMove, LastCluster,, %splashMove%, 200
         useCurrency("Scour")
 		}
     SplashTextOff
 	}
+
+altAnnulToRegex(blueRegex1,blueRegex2,blueregex)
+    {
+    ;Mode 0: Alt Check Aug Regal Check 
+	;Mode 1: Alt Check Aug Check Regal Check
+	global misscur
+    global splashMove
+	Loop
+	{
+		if GetKeyState("Esc", "P")
+			{
+            SplashTextOff
+			break
+			}
+		if (misscur != 0){
+            SplashTextOff
+			break
+			}
+		;Loop Code
+		altToRegex(1,blueRegex1,blueRegex2,0)
+		getItemClipboard()
+		result := %blueregex%()
+        if (result = 2){
+            break
+            }
+        if (result = 1){
+            AugAnnulToRegex(blueregex)
+            getItemClipboard()
+            result := %blueregex%()
+            if (result = 2){
+                break
+                }
+            } 
+        
+        useCurrency("Scour")
+		}
+    SplashTextOff
+    altToRegex(1,blueRegex1,blueRegex2,0) 
+
+
+    }
 setRegex(regexVal,regexType){
     ;RegexBar() RegexBar for normal harvestRegex for harvest
     %regexType%()
@@ -398,7 +456,7 @@ craftEssence(re1,score,essence){
 Numpad6::
     initFunction()
     ;altToRegex(1,"m)Many|e\sBow$","",0)
-    altToRegex(1,"m)Training|Stalwart|Flaring|e\sJewel$","m)Training|Stalwart|Flaring|^Synthesised\sGhastly",0) ;T1 save either. 
+    altAnnulToRegex("m)Training|Stalwart|Flaring|e\sJewel$","m)Training|Stalwart|Flaring|^Synthesised\sGhastly","MinionGhastlyAdorned") ;T1 save either. 
     ;altToRegex(1,"m)Training|e\sJewel$","m)Sanguine|Tempered|Vile|^Synthesised\sGhastly",0) ;T2
     ;altToRegex(1,"m)Training|e\sJewel$","m)Malignant|Healthy|Razor|^Synthesised\sGhastly",0) ;T3
     ;altToRegex(1,"m)Deathless|r\sShield$","",0)
@@ -414,9 +472,10 @@ Numpad7::
     ;MouseClick Right
     ;altToRegex(1,"m)Powerful|Glowing|Sanguine|^Lar","m)Eviction|zi|Kaleidoscope|Jewel$",0)
     ;MsgBox % clusterLife(Clipboard)
-    MsgBox % MD1284()
+    ;MsgBox % MinionGhastlyAdorned()
     ;altToRegex(1,"m)Impala|Flask$","",0)
     ;useEssence("deafTorment")
+    altToRegex(1,"m)Meteor|Prodigy|Jewel$","m)Powerful|Glowing|^Synthesised\sLar",0) 
     return
 
 
@@ -430,10 +489,14 @@ Numpad1::
                 altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|^Lar","m)Eviction|zi|Kaleidoscope|Jewel$","MD1284")
                 }
             if RegExMatch(Clipboard,"10% increased Spell Damage"){
-                altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")   
+                altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Kaleidoscope|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")   
+                ;altAugRegalToRegex(1,"m)Meteor|Bear|Jewel$","m)Powerful|Sanguine|Dangerous|^Lar","SD1284")   
                 }
             if RegExMatch(Clipboard,"12% increased Damage with Bows"){
                 altAugRegalToRegex(1,"m)Powerful|Sanguine|Dangerous|^Lar","m)Meteor|Bear|Prodigy|Eviction|Kaleidoscope|Fox|Mastery|Jewel$","BD1284")
+                }
+            if RegExMatch(Clipboard,"12% increased Damage with Hits and Ailments"){
+                altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|Dangerous|^Lar","m)Mastery|Prodigy|Eviction|Kaleidoscope|Jewel$","WD1284")
                 }
             }
         if RegExMatch(Clipboard,"Adds 3 Passive Skills"){
