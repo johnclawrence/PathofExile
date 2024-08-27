@@ -133,29 +133,65 @@ F4::
 	;MouseMove xTradeR,yTrade5,9
     return
 
+turninDivcard()
+	{
+		MouseGetPos xPos,yPos
+		Send, {Control down}
+		sleep 20
+		MouseClick Left
+		sleep 20
+		Send, {Control up}
+		;MouseMove 564,970,0
+		MouseMove 1280,970,0
+		sleep 80
+		MouseClick Left
+		sleep 80
+		;MouseMove 619,669,0
+		MouseMove 1283,669,0
+		sleep 30
+		Send, {Control down}
+		sleep 20
+		MouseClick Left
+		sleep 20
+		Send, {Control up}
+		sleep 20
+		MouseMove xPos,yPos,0
+		return
+	}
+
+
 F6::
-	MouseGetPos xPos,yPos
-	Send, {Control down}
-	sleep 20
-	MouseClick Left
-	sleep 20
-	Send, {Control up}
-	;MouseMove 564,970,0
-	MouseMove 1280,970,0
-	sleep 80
-	MouseClick Left
-	sleep 80
-	;MouseMove 619,669,0
-	MouseMove 1283,669,0
-	sleep 30
-	Send, {Control down}
-	sleep 20
-	MouseClick Left
-	sleep 20
-	Send, {Control up}
-	sleep 20
-	MouseMove xPos,yPos,0
+	curX:= InvFirstX
+	curY:= InvFirstY
+	countX=0
+	countY=0
+	Loop {
+		if GetKeyState("Esc", "P")
+			{
+			break
+			}
+		if (countX = 12)
+			break
+		if (countY = 7)
+			break
+		MouseMove curX,curY,0
+		turninDivcard()
+		countY := countY + 1
+		curY := curY + invWidth
+		if (countY = 5)
+			{
+			countX := countX + 1
+			countY := 0
+			curY := InvFirstY
+			curX := curX + invWidth
+			}
+		}
+	curX:= InvFirstX
+	curY:= InvFirstY
+	countX=0
+	countY=0
 	return
+	
 	
 clickuse(xPos,yPos)
 	{	sleepdur=65
