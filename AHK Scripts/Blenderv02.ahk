@@ -144,8 +144,8 @@ useCurrency(functionName) {
             break
             }
 		if (fcLoop = 25){
-            break
 			findCurrency(functionName)
+            break
 			}
         }
     useCooldownSleep()
@@ -285,6 +285,32 @@ AugAnnulToRegex(exRegex)
         AugAnnulToRegex(exRegex)
         }
     }
+
+AnnulExaltToRegex(exRegex)
+    {
+    getItemClipboard()
+    result := %exRegex%()
+    SplashTextOn, 800, 1000, LastCluster, %Clipboard%`n Score: %result%
+    WinMove, LastCluster,, 1200, 0
+    sleep 1000
+    if (result > 1){
+        sleep 1000
+        useCurrency("Annul")
+        }
+    getItemClipboard()
+    result := %exRegex%()
+    if (result > 1){
+        sleep 1000
+        useCurrency("Exalt")
+        }
+    sleep 1000
+    getItemClipboard()
+    result := %exRegex%()
+    if (result = 2){
+        AnnulExaltToRegex(exRegex)
+        }
+    }
+    
 altAugRegalToRegex(Mode,blueRegex1,blueRegex2,rareRegex) 
 	{
 	;Mode 0: Alt Check Aug Regal Check 
@@ -384,7 +410,61 @@ setRegex(regexVal,regexType){
     SendInput, %regexVal%
     }
 
-
+altAugRegalToRegexv2(Mode,blueRegex1,blueRegex2,rareRegex) 
+	{
+	;Mode 0: Alt Check Aug Regal Check 
+	;Mode 1: Alt Check Aug Check Regal Check
+	global misscur
+    global splashMove
+	Loop
+	{
+		if GetKeyState("Esc", "P")
+			{
+            SplashTextOff
+			break
+			}
+		if (misscur != 0){
+            SplashTextOff
+			break
+			}
+		;Loop Code
+		if (Mode=0){
+			altToRegex(0,blueRegex1,blueRegex2,0)
+            sleep 20
+			useCurrency("Augmentation")
+			}
+		if (Mode=1){
+			altToRegex(1,blueRegex1,blueRegex2,0)
+			}
+		useCurrency("Regal")
+		getItemClipboard()
+		result := %rareRegex%()
+        if (RegExMatch(Clipboard,"fractured")){
+            if (result > 2){
+                ExaltAnnulToRegex(rareRegex)
+                getItemClipboard()
+                result := %rareRegex%()
+                if (result > 3){
+                    break
+                    }
+                }
+            }
+        else{
+            if (result = 2){  
+                AnnulExaltToRegex(rareRegex)
+                }
+            if (result > 2){    
+                break
+                }
+            }
+        getItemClipboard()
+        result := %rareRegex%()
+        SplashTextOn, 800, 1000, LastCluster, %Clipboard%`n Score: %result%
+        WinMove, LastCluster,, %splashMove%, 0
+        useCurrency("Scour")
+		}
+    SplashTextOff
+	}
 
 useEssence(essence){
     Y1 := 230
@@ -456,10 +536,12 @@ craftEssence(re1,score,essence){
 Numpad6::
     initFunction()
     ;altToRegex(1,"m)Many|e\sBow$","",0)
-    altAnnulToRegex("m)Training|Stalwart|Flaring|e\sJewel$","m)Training|Stalwart|Flaring|^Synthesised\sGhastly","MinionGhastlyAdorned") ;T1 save either. 
+    ;altAnnulToRegex("m)Training|Stalwart|Flaring|e\sJewel$","m)Training|Stalwart|Flaring|^Synthesised\sGhastly","MinionGhastlyAdorned") ;T1 save either. 
     ;altToRegex(1,"m)Training|e\sJewel$","m)Sanguine|Tempered|Vile|^Synthesised\sGhastly",0) ;T2
     ;altToRegex(1,"m)Training|e\sJewel$","m)Malignant|Healthy|Razor|^Synthesised\sGhastly",0) ;T3
     ;altToRegex(1,"m)Deathless|r\sShield$","",0)
+    AnnulExaltToRegex("SD1284M")
+    SplashTextOff
     return
 
 Numpad7::
@@ -475,7 +557,8 @@ Numpad7::
     ;MsgBox % MinionGhastlyAdorned()
     ;altToRegex(1,"m)Impala|Flask$","",0)
     ;useEssence("deafTorment")
-    altToRegex(1,"m)Meteor|Prodigy|Jewel$","m)Powerful|Glowing|^Synthesised\sLar",0) 
+    altAugRegalToRegexv2(1,"m)Meteor|Prodigy|Jewel$","m)Powerful|Glowing|^Synthesised\sLar","SD1284M") 
+    ;altToRegex(1,"m)Meteor|Prodigy|Jewel$","m)Powerful|Glowing|^Synthesised\sLar",0) 
     return
 
 
@@ -489,11 +572,15 @@ Numpad1::
                 altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|^Lar","m)Eviction|zi|Kaleidoscope|Jewel$","MD1284")
                 }
             if RegExMatch(Clipboard,"10% increased Spell Damage"){
-                altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Kaleidoscope|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")   
-                ;altAugRegalToRegex(1,"m)Meteor|Bear|Jewel$","m)Powerful|Sanguine|Dangerous|^Lar","SD1284")   
+                altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Kaleidoscope|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")  
+                ;altAugRegalToRegex(1,"m)Meteor|Prodigy|Jewel$","m)Powerful|Glowing|Dangerous|^Lar","SD1284")
                 }
             if RegExMatch(Clipboard,"12% increased Damage with Bows"){
                 altAugRegalToRegex(1,"m)Powerful|Sanguine|Dangerous|^Lar","m)Meteor|Bear|Prodigy|Eviction|Kaleidoscope|Fox|Mastery|Jewel$","BD1284")
+                }
+            if RegExMatch(Clipboard,"12% increased Attack Damage while holding a Shield"){
+                altAugRegalToRegex(1,"m)Powerful|Sanguine|Glowing|^Lar","m)Meteor|Bear|Prodigy|Eviction|Kaleidoscope|Mastery|Jewel$","ADS1284")
+                ;altAugRegalToRegex(1,"m)Powerful|Glowing|^Lar","m)Prodigy|Mastery|Jewel$","ADS1284")
                 }
             if RegExMatch(Clipboard,"12% increased Damage with Hits and Ailments"){
                 altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|Dangerous|^Lar","m)Mastery|Prodigy|Eviction|Kaleidoscope|Jewel$","WD1284")

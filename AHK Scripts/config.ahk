@@ -25,26 +25,26 @@ InvWidth = 53
 InvX = 5
 InvY = 12
 
-splashMove=1200
+splashMove=1300
 
 useCooldownSleep(){
 	;This is somewhere around your ping.
 	;If you start to see "Item Unuseable" you need to increase this.
-	Sleep 100
+	Sleep 80
 	}
 checkRegexSleep(){
 	;This number + useCooldownSleep needs to be about double your ping.
-	Sleep 100
+	Sleep 80
 	}
 
 checkOCRSleep(){
     ;This number + useCooldownSleep needs to be about double your ping.
-    Sleep 100
+    Sleep 80
     }
 
 wiggleSleep(){
 	;This is the cooldown to wait the stuff on your cursor to stop moving
-	Sleep 30
+	Sleep 25
 	}
 	
 Trans() {

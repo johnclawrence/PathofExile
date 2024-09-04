@@ -25,7 +25,9 @@ clusterDamage(itemModData)
         if RegExMatch(itemModData,"Hazardous"){
             return 2
         }        
-        return 1
+        if RegExMatch(itemModData,"Harmful"){
+            return 1
+        }    
     }
     return 0
     }
@@ -220,7 +222,7 @@ SD1284(){
     if (clusterEffect(Clipboard) > 1){
         score:=score+1
         }
-    if (clusterAllAttribute(Clipboard)+clusterElementalResistance(Clipboard) > 1){
+    if (clusterAllAttribute(Clipboard)+clusterElementalResistance(Clipboard) > 2){
         score:=score+1
         }
     if  (clusterEnergyShield(Clipboard)+clusterLife(Clipboard)+clusterDamage(Clipboard) > 1){
@@ -300,7 +302,45 @@ BD1284(){
         }
     return score
     }
-        
+
+ADS1284(){
+    score=0
+    AtkSpedT1 :=  RegExMatch(Clipboard,"Mastery")
+    if (clusterEffect(Clipboard) > 1){
+        score:=score+1
+        }
+    if  (clusterEnergyShield(Clipboard)+clusterLife(Clipboard)+clusterDamage(Clipboard) > 2){
+        score:=score+1
+        }
+
+    if (clusterAllAttribute(Clipboard) > 2){
+        score:=score+1
+        }
+    if (clusterElementalResistance(Clipboard) > 2){
+        score:=score+1
+        }    
+    if (AtkSpedT1 > 0){
+        score:=score+1
+        }
+    if (clusterChaosResistance(Clipboard) > 2){
+        score:=score+1
+        }        
+    if  (clusterStrength(Clipboard)+clusterIntelligence(Clipboard) > 2){
+        score:=score+1
+        }
+    if (clusterStrength(Clipboard) > 2) {
+        if (clusterEnergyShield(Clipboard) > 1) {
+            score:=score-1
+            }
+        }
+    if (clusterIntelligence(Clipboard) > 2) {
+        if (clusterLife(Clipboard) > 1) {
+            score:=score-1
+            }
+        }
+    return score
+    }
+
 LD1284H(){
     AtkSpedT1 :=  RegExMatch(Clipboard,"3% increased Attack and Cast Speed with Lightning Skills")
     score=0
@@ -457,7 +497,7 @@ CD875(){
 
 WD1284(){
     score=0
-    AtkSpedT1 :=  RegExMatch(Clipboard,"Added Small Passive Skills also grant: 3% increased Attack Speed")
+    AtkSpedT1 :=  RegExMatch(Clipboard,"Mastery")
     if (clusterEffect(Clipboard) > 1){
         score:=score+1
         }
@@ -467,10 +507,7 @@ WD1284(){
     if  ((clusterIntelligence(Clipboard)+clusterElementalResistance(Clipboard)+clusterChaosResistance(Clipboard)> 2)){
         score:=score+1
         }
-    if (AtkSpedT1 > 0){
-        score:=score+1
-        }
-    if (clusterAllAttribute(Clipboard) > 0){
+    if (clusterAllAttribute(Clipboard) + AtkSpedT1 > 0){
         score:=score+1
         }
     return score
