@@ -262,6 +262,28 @@ SD1284M(){
     return score
     }
     
+SD1284toFracture(){
+    score=0
+    if (clusterEffect(Clipboard) > 1){
+        score:=score+1
+        }
+    if (clusterAllAttribute(Clipboard) > 2){
+        score:=score+1
+        }
+    if  (clusterEnergyShield(Clipboard) > 2){
+        score:=score+1
+        ;if (RegExMatch(Clipboard,"Skills also grant: +12")){
+            
+        ;    }
+        }
+    if  (clusterIntelligence(Clipboard) > 2){
+        ;if (RegExMatch(Clipboard,"Skills also grant: +8")){
+        score:=score+1
+            ;}
+        } 
+    return score
+    }
+
 MD1284(){
     AtkSpedT1 :=  RegExMatch(Clipboard,"Minions have 3% increased Attack and Cast Speed")
     vBite := RegExMatch(Clipboard,"Vicious")
@@ -341,6 +363,31 @@ ADS1284(){
     return score
     }
 
+ADS1284toFracture(){
+    score=0
+    AtkSpedT1 :=  RegExMatch(Clipboard,"Added Small Passive Skills also grant: 3% increased Attack Speed")
+    if (clusterEffect(Clipboard) > 1){
+        score:=score+1
+        }
+    if  (clusterEnergyShield(Clipboard) >2){
+        if (RegExMatch(Clipboard,"Added Small Passive Skills also grant: +12")){
+            score:=score+1
+            }
+        }
+    if  ((clusterIntelligence(Clipboard)> 2)){
+        if (RegExMatch(Clipboard,"Added Small Passive Skills also grant: +6")){
+            score:=score+1
+            }
+        }
+    if (AtkSpedT1 > 0){
+        score:=score+1
+        }
+    if (clusterAllAttribute(Clipboard) > 2){
+        score:=score+1
+        }
+    return score
+    }
+        
 LD1284H(){
     AtkSpedT1 :=  RegExMatch(Clipboard,"3% increased Attack and Cast Speed with Lightning Skills")
     score=0
@@ -377,6 +424,47 @@ LD1284(){
 QACluster()
     {
     return Effect clusterEffect(Clipboard) Damage clusterDamage(Clipboard) ES clusterEnergyShield(Clipboard) Life clusterLife(Clipboard) Attr clusterAllAttribute(Clipboard) chaos clusterChaosResistance(Clipboard) Dex clusterDexterity(Clipboard) ele clusterElementalResistance(Clipboard) Int clusterIntelligence(Clipboard) Str clusterStrength(Clipboard)
+    }
+
+FD684(){
+    AtkSpedT1 :=  RegExMatch(Clipboard,"Overflowing")
+    vBite := RegExMatch(Clipboard,"Fasting")
+
+    ;I must have T1 effect or Attributes in my 3 mods.
+    score=0
+    output = 0
+    if (clusterEffect(Clipboard) > 1){
+        score:=score+1
+        }
+    if  (clusterLife(Clipboard) +vBite> 2){
+        score:=score+1
+        }
+    if (AtkSpedT1 > 0){
+        score:=score+1
+        }
+    if  (clusterElementalResistance(Clipboard)clusterChaosResistance(Clipboard)+clusterAllAttribute(Clipboard) > 2){
+        score:=score+1
+        }
+    return score
+    }
+
+FD684ToFracture(){
+    AtkSpedT1 :=  RegExMatch(Clipboard,"Overflowing")
+    vBite := RegExMatch(Clipboard,"Fasting")
+
+    ;I must have T1 effect or Attributes in my 3 mods.
+    score=0
+    output = 0
+    if (clusterEffect(Clipboard) > 1){
+        score:=score+1
+        }
+    if  (vBite> 0){
+        score:=score+1
+        }
+    if (AtkSpedT1 > 0){
+        score:=score+1
+        }
+    return score
     }
 
 eleBowPrefix()
@@ -422,6 +510,33 @@ mdRing(){
         }
     return score
     }
+Genius(){
+    score=0
+    T1Int:= RegExMatch(Clipboard,"Genius")
+    if (T1Int>0){
+        score:=score+1
+        }
+    return score
+}
+Dissolution(){
+    score=0
+    T1Int:= RegExMatch(Clipboard,"Dissolution")
+    if (T1Int>0){
+        score:=score+1
+        }
+    return score
+    } 
+
+allskillsneck(){
+    score=0
+    T1Int:= RegExMatch(Clipboard,"Exalter's")
+    if (T1Int>0){
+        score:=score+2
+        }
+    return score
+    }
+
+
 MinionGhastlyAdorned(){
     score=0
     T1Speed:=RegExMatch(Clipboard,"Training")
