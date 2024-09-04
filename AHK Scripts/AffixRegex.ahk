@@ -402,7 +402,7 @@ FD684(){
     if (AtkSpedT1 > 0){
         score:=score+1
         }
-    if  (clusterElementalResistance(Clipboard)clusterChaosResistance(Clipboard)+clusterAllAttribute(Clipboard)+clusterStrength(Clipboard) > 2){
+    if  (clusterElementalResistance(Clipboard)clusterChaosResistance(Clipboard)+clusterAllAttribute(Clipboard) > 2){
         score:=score+1
         }
     return score

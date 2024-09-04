@@ -551,13 +551,13 @@ Numpad7::
     ;MouseClick Right
     ;altToRegex(1,"m)Powerful|Glowing|Sanguine|^Lar","m)Eviction|zi|Kaleidoscope|Jewel$",0)
     ;altToRegex(1,"m)Powerful|^Lar","m)Overflowing|Jewel$",0)
-    alchToRegex("FD684ToFracture")
+    ;alchToRegex("FD684ToFracture")
     ;MsgBox % clusterLife(Clipboard)
     ;MsgBox % allskillsneck()
     ;altToRegex(1,"m)Impala|Flask$","",0)
     ;useEssence("deafTorment")
     ;altToRegex(1,"m)Meteor|Prodigy|Jewel$","m)Powerful|Glowing|^Synthesised\sLar",0) 
-    ;alchToRegex("allskillsneck")
+    alchToRegex("allskillsneck")
     return
 
 
@@ -571,15 +571,28 @@ Numpad1::
                 altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|^Lar","m)Eviction|zi|Kaleidoscope|Jewel$","MD1284")
                 }
             if RegExMatch(Clipboard,"10% increased Spell Damage"){
-                altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Kaleidoscope|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")   
-                ;altAugRegalToRegex(1,"m)Meteor|Prodigy|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")   
-                ;altAugRegalToRegex(1,"m)Meteor|Bear|Jewel$","m)Powerful|Sanguine|Dangerous|^Lar","SD1284")   
+                if RegExMatch(Clipboard,"Fractured"){
+                    altAugRegalToRegex(1,"m)Meteor|Bear|Prodigy|Kaleidoscope|Jewel$","m)Powerful|Glowing|Sanguine|Dangerous|^Lar","SD1284")   
+                    ;altAugRegalToRegex(1,"m)Meteor|Prodigy|Jewel$","m)Powerful|Glowing|^Lar","SD1284")   
+                    ;altAugRegalToRegex(1,"m)Meteor|Bear|Jewel$","m)Powerful|Sanguine|Dangerous|^Lar","SD1284")  
+                    }
+                else{
+                    alchToRegex("SD1284toFracture")   
+                    }
                 }
             if RegExMatch(Clipboard,"12% increased Damage with Bows"){
                 altAugRegalToRegex(1,"m)Powerful|Sanguine|Dangerous|^Lar","m)Meteor|Bear|Prodigy|Eviction|Kaleidoscope|Fox|Mastery|Jewel$","BD1284")
                 }
             if RegExMatch(Clipboard,"12% increased Damage with Hits and Ailments"){
-                altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|Dangerous|^Lar","m)Mastery|Prodigy|Eviction|Kaleidoscope|Jewel$","WD1284")
+                if RegExMatch(Clipboard,"Fractured"){
+                    altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|Dangerous|^Lar","m)Mastery|Prodigy|Eviction|Kaleidoscope|Jewel$","WD1284")
+                    }
+                else{
+                    alchToRegex("ADS1284toFracture")
+                    }
+                }
+            if RegExMatch(Clipboard,"12% increased Attack Damage while holding a Shield"){
+                alchToRegex("ADS1284toFracture")   
                 }
             }
         if RegExMatch(Clipboard,"Adds 3 Passive Skills"){
@@ -594,7 +607,7 @@ Numpad1::
             }
         }
     if RegExMatch(Clipboard,"Adds 6 Passive Skills"){
-        altAugRegalToRegex(1,"m)Powerful|Sanguine|^Medium\sC","m)Meteor|Bear|Eviction|Kaleidoscope|Overflowing|Jewel$","FD684")
+        altAugRegalToRegex(1,"m)Powerful|Sanguine|^Medium\sC","m)Meteor|Eviction|Kaleidoscope|Overflowing|Jewel$","FD684")
         
     }
 
@@ -625,30 +638,6 @@ Numpad2::
                 }
             }
         }
-    return
-
-Numpad3::
-    getItemClipboard()
-    if RegExMatch(Clipboard,"Item Level: [84-89]"){
-        if RegExMatch(Clipboard,"Adds 12 Passive Skills"){
-            if RegExMatch(Clipboard,"Minions deal 10% increased Damage"){
-                
-                }
-            if RegExMatch(Clipboard,"10% increased Spell Damage"){
-                alchToRegex("SD1284toFracture")   
-                }
-            if RegExMatch(Clipboard,"12% increased Attack Damage while holding a Shield"){
-                alchToRegex("ADS1284toFracture")   
-                }
-            if RegExMatch(Clipboard,"12% increased Damage with Bows"){
-                altAugRegalToRegex(1,"m)Powerful|Sanguine|Dangerous|^Lar","m)Meteor|Bear|Prodigy|Eviction|Kaleidoscope|Fox|Mastery|Jewel$","BD1284")
-                }
-            if RegExMatch(Clipboard,"12% increased Damage with Hits and Ailments"){
-                altAugRegalToRegex(1,"m)Powerful|Glowing|Sanguine|Dangerous|^Lar","m)Mastery|Prodigy|Eviction|Kaleidoscope|Jewel$","WD1284")
-                }
-            }
-        }
-
     return
 
 Numpad8::
